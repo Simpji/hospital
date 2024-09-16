@@ -1,0 +1,37 @@
+import { useState } from "react";
+import { SlMenu } from "react-icons/sl";
+import { MdCancel } from "react-icons/md";
+
+function Header() {
+  const [ open, setOpen ] = useState(false)
+  return (
+    <div className="bg-blue-950 sticky top-0z-[20] flex item-center py-[10px] justify-between px-[30px]">
+        <div>
+          <a href=""><h1 className="text-[24px] text-white font-bold">Simple Hospital</h1></a>
+        </div>
+        <nav className="hidden lg:flex space-x-4 text-white text-[15px]">
+            <a href="">Home</a>
+            <a href="">Product</a>
+            <a href="">Cart</a>
+            <a href="">Login</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="flex items-center justify-center w-[35px] h-[35px] lg:hidden">
+        <SlMenu className="text-3xl text-white" />
+        </button>
+        <div onClick={() => setOpen(!open)} className={`fixed lg:hidden top-0 w-full bg-black z-[20]${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}></div>
+        <div className={`fixed lg:hidden left-0 top-0 w-[300px] h-screen overflow-auto z-[30] bg-white transition-all duration-200 ${open ? "transition-x-[0px]" : "translate-x-[-500px]"}`}>
+          <div className="flex justify-end p-4">
+          <MdCancel onClick={() => setOpen(false)} className="text-red-500 text-3xl cursor-pointer" />
+        </div>
+          <nav className="flex flex-col lg:space-x-4 text-black text-[15px]" >
+              <a href="">Home</a>
+              <a href="">Product</a>
+              <a href="">Cart</a>
+              <a href="">Login</a>
+        </nav>
+        </div>
+    </div>
+  )
+}
+
+export default Header
