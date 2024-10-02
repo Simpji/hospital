@@ -1,0 +1,163 @@
+{
+    "Patients": [
+        {
+            "id": "1",
+            "name": "Simple Williams",
+            "dob": "1990-01-01",
+            "email": "simplewilliams965@gmail.com",
+            "history": [
+                {
+                    "date": "2023-01-15",
+                    "description": "General consultation for flu symptoms.",
+                    "diagnosis": "Flu",
+                    "treatment": "Rest, fluids, and OTC medication."
+                }
+            ],
+            "isActive": false
+        },
+        {
+            "id": "2",
+            "name": "John Doe",
+            "dob": "1985-05-15",
+            "email": "johndoe@example.com",
+            "history": [
+                {
+                    "date": "2024-06-25",
+                    "description": "Annual check-up.",
+                    "diagnosis": "Healthy, no issues",
+                    "treatment": "Routine blood work and physical exam."
+                }
+            ],
+            "isActive": false
+        },
+        {
+            "id": "3",
+            "name": "Alice Johnson",
+            "dob": "1992-04-10",
+            "email": "alice.johnson@example.com",
+            "history": [],
+            "isActive": true
+        },
+        {
+            "id": "4",
+            "name": "Michael Smith",
+            "dob": "1988-08-22",
+            "email": "michael.smith@example.com",
+            "history": [],
+            "isActive": true
+        },
+        {
+            "id": "5",
+            "name": "Emily Davis",
+            "dob": "1995-12-15",
+            "email": "emily.davis@example.com",
+            "history": [
+                {
+                    "date": "2023-07-20",
+                    "description": "Follow-up for skin rash.",
+                    "diagnosis": "Allergic reaction",
+                    "treatment": "Antihistamines and topical cream."
+                }
+            ],
+            "isActive": true
+        },
+        {
+            "id": "6",
+            "name": "James Brown",
+            "dob": "1980-03-30",
+            "email": "james.brown@example.com",
+            "history": [
+                {
+                    "date": "2024-01-10",
+                    "description": "Consultation for knee pain.",
+                    "diagnosis": "Arthritis",
+                    "treatment": "Physical therapy and medication."
+                }
+            ],
+            "isActive": false
+            }
+        ],
+
+  "Doctors": [
+      {
+        "id": "1",
+        "name": "Dr. Sarah Smith",
+        "specialty": "Cardiology",
+        "workingDays": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        "daysOff": ["Friday", "Saturday", "Sunday"],
+        "workingHours": "9:00 AM - 5:00 PM",
+        "image": "/img/doctor1.jpg",
+        "yearsOfExperience": "I am Dr. Sarah Smith, and I have been working in cardiology for 10 years at Simple Hospital. My practice focuses on cardiovascular health, providing both preventative care and treatment for various heart conditions. I strive to ensure my patients receive personalized care tailored to their needs."
+      },
+      {
+        "id": "2",
+        "name": "Dr. John Doe",
+        "specialty": "Dermatology",
+        "workingDays": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+        "daysOff": ["Monday", "Saturday", "Sunday"],
+        "workingHours": "10:00 AM - 4:00 PM",
+        "image": "/img/doctor2.jpg",
+        "yearsOfExperience": "I am Dr. John Doe, and I have been working in dermatology for 8 years at Simple Hospital. My practice focuses on skin health, diagnosing and treating various skin conditions. I am dedicated to helping my patients achieve healthy and radiant skin through effective treatment plans."
+      },
+      {
+        "id": "3",
+        "name": "Dr. Alice Johnson",
+        "specialty": "Pediatrics",
+        "workingDays": ["Monday", "Wednesday", "Friday"],
+        "daysOff": ["Tuesday", "Thursday", "Saturday", "Sunday"],
+        "workingHours": "8:00 AM - 3:00 PM",
+        "image": "/img/doctor3.jpg",
+        "yearsOfExperience": "I am Dr. Alice Johnson, and I have been working in pediatrics for 5 years at Simple Hospital. My practice is dedicated to the health and well-being of children. I focus on preventive care and early diagnosis of childhood illnesses, ensuring that my young patients receive the best possible care."
+      },
+      {
+        "id": "4",
+        "name": "Dr. Emily Davis",
+        "specialty": "Neurology",
+        "workingDays": ["Monday", "Thursday", "Friday"],
+        "daysOff": ["Tuesday", "Wednesday", "Saturday", "Sunday"],
+        "workingHours": "9:30 AM - 5:30 PM",
+        "image": "/img/doctor4.jpg",
+        "yearsOfExperience": "I am Dr. Emily Davis, and I have been working in neurology for 7 years at Simple Hospital. My practice focuses on diagnosing and treating neurological disorders, and I am committed to providing compassionate care to my patients while helping them understand their conditions."
+      },
+      {
+        "id": "5",
+        "name": "Dr. Michael Brown",
+        "specialty": "Orthopedics",
+        "workingDays": ["Tuesday", "Wednesday", "Thursday"],
+        "daysOff": ["Monday", "Friday", "Saturday", "Sunday"],
+        "workingHours": "9:00 AM - 4:00 PM",
+        "image": "/img/doctor5.jpeg",
+        "yearsOfExperience": "I am Dr. Michael Brown, and I have been working in orthopedics for 6 years at Simple Hospital. My practice focuses on bone and joint health, providing surgical and non-surgical treatment options. I aim to empower my patients with the knowledge they need to make informed decisions about their care."
+      },
+      {
+        "id": "6",
+        "name": "Dr. Jennifer Lee",
+        "specialty": "Internal Medicine",
+        "workingDays": ["Monday", "Tuesday", "Friday"],
+        "daysOff": ["Wednesday", "Thursday", "Saturday", "Sunday"],
+        "workingHours": "8:30 AM - 5:00 PM",
+        "image": "/img/doctor6.jpeg",
+        "yearsOfExperience": "I am Dr. Jennifer Lee, and I have been working in internal medicine for 9 years at Simple Hospital. My practice focuses on adult medicine, emphasizing preventive care and the management of chronic conditions. I work closely with my patients to ensure they lead healthy lives."
+      },
+      {
+        "id": "7",
+        "name": "Dr. David Wilson",
+        "specialty": "Gastroenterology",
+        "workingDays": ["Wednesday", "Thursday", "Friday"],
+        "daysOff": ["Monday", "Tuesday", "Saturday", "Sunday"],
+        "workingHours": "10:00 AM - 5:00 PM",
+        "image": "/img/doctor7.jpeg",
+        "yearsOfExperience": "I am Dr. David Wilson, and I have been working in gastroenterology for 4 years at Simple Hospital. My practice focuses on digestive health, diagnosing and treating a range of gastrointestinal conditions. I strive to provide my patients with thorough care and guidance throughout their treatment."
+      },
+      {
+        "id": "8",
+        "name": "Dr. Laura Martinez",
+        "specialty": "Obstetrics/Gynecology",
+        "workingDays": ["Monday", "Tuesday", "Thursday"],
+        "daysOff": ["Wednesday", "Friday", "Saturday", "Sunday"],
+        "workingHours": "9:00 AM - 3:00 PM",
+        "image": "/img/doctor8.jpeg",
+        "yearsOfExperience": "I am Dr. Laura Martinez, and I have been working in obstetrics and gynecology for 12 years at Simple Hospital. My practice focuses on women's health at all stages of life, from routine exams to pregnancy care. I am dedicated to providing compassionate and comprehensive care to my patients."
+      }
+    ]
+    }
