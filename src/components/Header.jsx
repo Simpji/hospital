@@ -14,10 +14,10 @@ function Header() {
   return (
     <div className="bg-blue-950 sticky top-0 z-[20] flex items-center py-[10px] justify-between px-[30px]">
       <div>
-        <Link to="/"><h1 className="text-[24px] text-white font-bold">Simple Hospital</h1></Link>
+        {/* <Link to="/"><h1 className="text-[24px] text-white font-bold">Simple Hospital</h1></Link> */}
       </div>
       <nav className="hidden lg:flex space-x-4 text-white text-[15px]">
-        <Link to="/home">Home</Link>
+        <Link to="/">Home</Link>
         <div className="relative">
           <button
             onClick={() => toggleDropdown('management')}
@@ -29,10 +29,12 @@ function Header() {
             </svg>
           </button>
           <div className={`absolute left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg ${dropdownOpen === 'management' ? 'block' : 'hidden'}`}>
+            <Link to="/" className="block px-4 py-2 hover:bg-gray-100">Home</Link>
             <Link to="/appointments" className="block px-4 py-2 hover:bg-gray-100">Appointments</Link>
             <Link to="/registerPatient" className="block px-4 py-2 hover:bg-gray-100">Register Patient</Link>
-            <Link to="/billing" className="block px-4 py-2 hover:bg-gray-100">Billing</Link>
-            <Link to="/inventory" className="block px-4 py-2 hover:bg-gray-100">Inventory</Link>
+            <Link to="/patientlogin" className="block px-4 py-2 hover:bg-gray-100">Patient Login</Link>
+            <Link to="/invoice" className="block px-4 py-2 hover:bg-gray-100">Billing</Link>
+            {/* <Link to="/inventory" className="block px-4 py-2 hover:bg-gray-100">Inventory</Link> */}
             <Link to="/patient-portal" className="block px-4 py-2 hover:bg-gray-100">Patient Portal</Link>
             <Link to="/ContactInfo" className="block px-4 py-2 hover:bg-gray-100">ContactInfo</Link>
           </div>
@@ -48,7 +50,7 @@ function Header() {
           <MdCancel onClick={() => setOpen(false)} className="text-red-500 text-3xl cursor-pointer" />
         </div>
         <nav className="flex flex-col text-black text-[15px]">
-          <Link to="/home" onClick={() => setOpen(false)}>Home</Link>
+          <Link to="/" onClick={() => setOpen(false)}>Home</Link>
           <button onClick={() => toggleDropdown('management')} className="flex items-center space-x-2">
             <span>Management</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -57,11 +59,13 @@ function Header() {
           </button>
           <div className={`flex flex-col ${dropdownOpen === 'management' ? 'block' : 'hidden'}`}>
             <Link to="/appointments" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Appointments</Link>
-            <Link to="/billing" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Billing</Link>
-            <Link to="/inventory" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Inventory</Link>
-            <Link to="/patient-portal" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Patient Portal</Link>
+            <Link to="/registerPatient" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Register Patient</Link>
+            <Link to="/patientlogin" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Patient Login</Link>
+            <Link to="/invoice" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Billing</Link>
+            {/* <Link to="/inventory" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Inventory</Link> */}
+            <Link to="/patientportal" onClick={() => setOpen(false)} className="px-4 py-2 hover:bg-gray-100">Patient Portal</Link>
           </div>
-          <Link to="/login" onClick={() => setOpen(false)}>Login</Link>
+          {/* <Link to="/login" onClick={() => setOpen(false)}>Login</Link> */}
         </nav>
       </div>
     </div>

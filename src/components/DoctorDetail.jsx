@@ -1,7 +1,6 @@
-
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import HospitalContext from "../context/hospitalContext";
+import HospitalContext from "../context/HospitalContext";
 
 function DoctorDetail() {
     const { id } = useParams();
@@ -37,7 +36,9 @@ function DoctorDetail() {
 
         const selectedDate = new Date(`${date}T${time}`);
         const selectedDay = selectedDate.toLocaleDateString('en-NG', { weekday: 'long' });
-        const workingDays = doctor.workingDays.map(day => day.toLowerCase());
+
+ 
+        const workingDays = doctor.workingDays ? doctor.workingDays.map(day => day.toLowerCase()) : [];
         const formattedSelectedDay = selectedDay.toLowerCase();
 
         if (!workingDays.includes(formattedSelectedDay)) {
@@ -72,21 +73,22 @@ function DoctorDetail() {
         setErrorMessage("");
     };
 
+   
     if (!doctor) {
         return <div>No doctor found</div>;
     }
 
     return (
         <div className="doctorDetail">
-            <img src={doctor.image} alt="" className="header" />
+            <img src={doctor.image} alt={doctor.name} className="header" />
             <div className="doctorInfo">
                 <h1>{doctor.name}</h1>
                 <div className="infoRow">
                     <div className="infoItem">Specialty: {doctor.specialty}</div>
-                    <div className="infoItem">Working Days: {doctor.workingDays.join(", ")}</div>
+                    <div className="infoItem">Working Days: {doctor.workingDays ? doctor.workingDays.join(", ") : "N/A"}</div>
                     <div className="infoItem">Working Hours: {doctor.workingHours}</div>
                 </div>
-                <p>Days Off: {doctor.daysOff.join(", ")}</p>
+                <p>Days Off: {doctor.daysOff ? doctor.daysOff.join(", ") : "N/A"}</p>
             </div>
             <div className="appointmentForm">
                 <form onSubmit={handleSubmit}>

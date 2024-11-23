@@ -1,6 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,700;0,800;1,600&family=Poppins:ital,wght@0,300;0,600;1,100;1,500;1,800&family=Roboto:wght@300;400;500;700&display=swap');
-@import url('https://unpkg.com/leaflet/dist/leaflet.css');
+
 
 @tailwind base;
 @tailwind components;
@@ -73,33 +72,41 @@ input {
 .customFeatures {
     position: relative;
     display: flex;
-    justify-content: space-around; /* Adjust as needed */
-    padding: 20px; /* Adjust padding */
-    margin-top: 350px; /* Space from previous sections */
+    justify-content: space-around;
+    padding: 20px; 
+    margin-top: 350px; 
 }
 
 .featureItem {
     display: flex;
     align-items: center;
-    flex-direction: column; /* Align items vertically */
-    text-align: center; /* Center text */
+    flex-direction: column; 
+    text-align: center; 
 }
 
 .col {
     font-size: 40px;
-    color: blue;
+    color: #1E3A8A;
 }
 
 .featureItem h1 {
-    font-size: 1.2rem; /* Adjust heading size */
-    margin: 10px 0; /* Space between heading and text */
+    font-size: 1.2rem; 
+    margin: 10px 0; 
 }
 
 .featureItem p {
-    font-size: 0.9rem; /* Adjust paragraph size */
-    color: #333; /* Change text color */
+    font-size: 0.9rem; 
+    color: #333; 
 }
-
+.hard{
+        padding: 3% ;
+}
+.hard3-1:hover {
+    transition: all 2s;
+    background-color: #00fffc; 
+    border-radius: 50%;
+}
+   
 .simple {
     display: flex;
     justify-content: space-around;
@@ -116,7 +123,7 @@ input {
 
 .simple2 h1 {
     font-size: 50px;
-    color: blue;
+    color: #1E3A8A;
 }
 
 .simp2 {
@@ -131,6 +138,84 @@ input {
     border-radius: 50%;
     object-fit: cover;
 }
+/* .sunday{
+     background-image: url("/img/our1.jpeg");
+} */
+
+.Sunday {
+    background-image: url("/img/Sunday.jpg");
+    /* clip-path: polygon(99% 0, 100% 100%, 0 100%, 0 19%);  */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* padding: 50px; */
+    /* margin:0, 10%; */
+}
+.Sundays {
+    background-image: url("/img/Sunday.jpg");
+    clip-path: polygon(99% 0, 100% 100%, 0 100%, 0 19%); 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* padding: 50px; */
+    /* margin:0, 10%; */
+}
+.sunday2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.sunday3 {
+    width: 400px;
+    height: 350px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+}
+
+.sunday3 img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px; 
+}
+.sunday3 h1{
+    font-size: 30px;
+    color: black;
+}
+.sunday3 p{
+    font-size: 1.2rem;
+    color: black;
+}
+.on{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 3% 0;
+}
+.one{
+    width: 400px;
+}
+.one p{
+    font-size: 1.3rem;
+}
+
 
 .docotor img {
     width: 100%;
@@ -150,15 +235,15 @@ input {
 }
 
 .doctor-item {
-    position: relative; /* For positioning the pseudo-element */
+    position: relative; 
     margin: 15px;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 8px;
     text-align: center;
     width: 300px;
-    overflow: hidden; /* To hide overflow during animation */
-    transition: transform 0.3s ease; /* Optional scaling effect */
+    overflow: hidden; 
+    transition: transform 0.3s ease; 
 }
 
 .doctor-item:hover {
@@ -169,24 +254,24 @@ input {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%; /* Start off-screen to the left */
+    left: -100%; 
     width: 100%;
     height: 100%;
-    background-color: wheat; /* Set your desired color */
-    transition: left 0.5s ease; /* Transition for sliding in */
-    z-index: 0; /* Behind the content */
+    background-color: wheat; 
+    transition: left 0.5s ease; 
+    z-index: 0; 
 }
 
 .doctor-item:hover::before {
-    left: 0; /* Slide in from the left */
+    left: 0; 
 }
 
 .doctor-item img {
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    position: relative; /* To position above the background */
-    z-index: 1; /* Ensure image is above the background */
+    position: relative; 
+    z-index: 1; 
 }
 
 .doctor-item h2,
@@ -280,7 +365,7 @@ h1 {
 .confirmationMessage {
     margin-top: 10px;
     padding: 10px;
-    background-color: #e0f7fa; /* Light background for visibility */
+    background-color: #e0f7fa; 
     border: 1px solid #007bff;
     border-radius: 5px;
     display: flex;
@@ -290,7 +375,7 @@ h1 {
 
 .confirmationMessage button {
     margin-left: 10px;
-    background-color: #ff5733; /* Red for cancellation */
+    background-color: #ff5733; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -299,13 +384,24 @@ h1 {
 }
 
 .confirmationMessage button:hover {
-    background-color: #c0392b; /* Darker red on hover */
+    background-color: #c0392b; 
 }
+swiper-pagination-progressbar {
+    background: #3498db; 
+    height: 5px; 
+    }
+
+    .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: #2980b9; 
+    }
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
     .Home {
-        font-size: 18px; /* Smaller font size */
+        font-size: 18px; 
+    }
+    .banner {
+        height: 30vh;
     }
     .customFeatures {
         position: relative;
@@ -316,68 +412,111 @@ h1 {
     .featureItem {
         margin: 5%;
         align-items: center;
-        flex-direction: column; /* Align items vertically */
-        text-align: center; /* Center text */
+        flex-direction: column;
+        text-align: center; 
     }
+    .simple {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        margin-top: 30px;
+    }
+
     .simple2 {
-        margin: 5%;
+        margin: 3%;
         align-items: center;
         flex-direction: column;
         text-align: center;
     }
 
-    .simple {
-        flex-direction: column; /* Stack items vertically */
-        padding: 20px;
-    }
-
     .simple2 h1 {
-        font-size: 30px; /* Smaller heading for mobile */
+        font-size: 30px; 
     }
 
     .simp2 img {
-        width: 100px; /* Smaller images */
-        height: 100px; /* Maintain aspect ratio */
+        width: 100px;
+        height: 100px; 
     }
 
     .doctor-item {
-        width: 100%; /* Full width on mobile */
-        margin: 10px 0; /* Adjust margin */
+        width: 100%; 
+        margin: 10px 0; 
     }
-
+    .doctorDetail{
+       flex-direction: column;
+       text-align: center;
+    }
+    .header{
+        margin: 20px;
+    }
     .appointmentForm {
-        width: 90%; /* Adjust form width */
+        width: 90%; 
+        margin-top: 20px;
     }
+    .Sunday {
+        background-image: url("/img/Sunday.jpg");   
+        height: 1200px;
+    }
+    .sunday2{
+        flex-direction: column;
+    }
+    .sunday3 {
+        width: 300px;
+        height: 340px;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .on{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .one{
+        width: 300px;
+        justify-content: center;
+        text-align: center;
+        margin: 3%;
+    }
+    
 }
 
 @media (max-width: 480px) {
     .Home {
-        font-size: 16px; /* Further reduce font size */
+        font-size: 16px; 
+    }
+    .customFeatures {
+        position: relative;
+        /* flex-direction: ; */
+        /* padding: 20px; 
+        margin-top: 350px;  */
     }
 
     .simple2 h1 {
-        font-size: 24px; /* Further reduce heading size */
+        font-size: 24px;
     }
 
     .simp2 img {
-        width: 80px; /* Further reduce image size */
-        height: 80px; /* Maintain aspect ratio */
+        width: 80px; 
+        height: 80px; 
     }
 
     .doctor-item {
-        padding: 15px; /* Reduce padding */
+        padding: 15px; 
     }
 
     .appointmentForm {
-        padding: 15px; /* Adjust form padding */
+        padding: 15px; 
     }
 
     .appointmentForm button {
-        padding: 8px; /* Adjust button padding for touch */
+        padding: 8px; 
     }
 
     .confirmationMessage {
-        flex-direction: column; /* Stack items vertically */
-        align-items: flex-start; /* Align items to the start */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 }
