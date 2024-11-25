@@ -154,57 +154,66 @@ function Home() {
       </div>
           
       <div className="hard space-y-6 bg-blue-95">
-      <h1 className="text-3xl font-bold text-center text-black">Our Patients</h1>
-      <div className="flex justify-center">
-        <input
-          type="text"
-          placeholder="Search by name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full md:w-1/2 lg:w-1/3 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-md transition duration-300 ease-in-out"
-        />
-      </div>
+  <h1 className="text-3xl font-bold text-center text-black">Our Patients</h1>
+  <div className="flex justify-center">
+    <input
+      type="text"
+      placeholder="Search by name"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="w-full md:w-1/2 lg:w-1/3 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-md transition duration-300 ease-in-out"
+    />
+  </div>
 
-   
-      <div className="hard2">
-      <ul className=" space-x- grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" ata-aos="flip-left"
-        data-aos-easing="ease-out-cubic"
-        data-aos-duration="2000">
-          {filteredPatients.length === 0 ? (
-            <p className="text-center text-gray-500">No patients found.</p>
-          ) : (
-            filteredPatients.map((patient) => (
-              <li
-                key={patient.id}
-                className="bg-blue-950 hard3-1 p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow ease-in-out duration-300 h-[300px] flex flex-col justify-between" data-aos="flip-left"
-                  data-aos-easing="ease-out-cubic"
-                  data-aos-duration="2000">
-                <div className="flex flex-col justify-between h-full">
-                  <div className="flex-1 text-center">
-                    <img
-                      src={patient.img}
-                      alt={patient.name}
-                      className="w-24 h-24 object-cover rounded-full mx-auto mb-4 shadow-md border-4 border-white"
-                    />
-                 
-                    <h3 className="text-xl font-semibold text-white mb-2">{patient.name}</h3>
+  <div className="hard2">
+    <ul
+      className="space-x- grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000"
+    >
+      {filteredPatients.length === 0 ? (
+        <p className="text-center text-gray-500">No patients found.</p>
+      ) : (
+        filteredPatients.map((patient) => (
+          <li
+            key={patient.id}
+            className="bg-blue-950 hard3-1 p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow ease-in-out duration-300 h-[300px] flex flex-col justify-between"
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
+            <div className="flex flex-col justify-between h-full">
+              <div className="flex-1 text-center">
+                <img
+                  src={patient.img}
+                  alt={patient.name}
+                  className="w-24 h-24 object-cover rounded-full mx-auto mb-4 shadow-md border-4 border-white"
+                />
 
-                    
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      {patient.history[0].description}
-                      {/* {patient.history[0].description} */}
-                    </h3>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                      {patient.history[0].diagnosis}
-                    </h3>
-                  </div>
-                </div>
-              </li>
-            ))
-          )}
-        </ul>
-      </div>
-    </div>
+                <h3 className="text-xl font-semibold text-white mb-2">{patient.name}</h3>
+
+                {/* Safe Access to Patient History */}
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {patient.history && patient.history.length > 0
+                    ? patient.history[0].description
+                    : 'No description available'}
+                </h3>
+
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  {patient.history && patient.history.length > 0
+                    ? patient.history[0].diagnosis
+                    : 'No diagnosis available'}
+                </h3>
+              </div>
+            </div>
+          </li>
+        ))
+      )}
+    </ul>
+  </div>
+</div>
+
 
       <div className="simple">
         <div className="simple2"  data-aos="zoom-in-up">
