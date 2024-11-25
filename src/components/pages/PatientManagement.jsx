@@ -27,6 +27,10 @@ const PatientManagement = () => {
     setIsEditing(true);
   };
 
+  const handleDeletePatient = (id) => {
+    deletePatient(id);
+  };
+
   const filteredPatients = (patients || []).filter(patient =>
     (patient.name && patient.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
     (patient.id && patient.id.toString().includes(searchTerm)) ||
@@ -49,27 +53,6 @@ const PatientManagement = () => {
       <RegisterPatient onRegister={handleRegister} patients={filteredPatients} onDelete={deletePatient} />
 
       <h2 className="text-xl font-semibold mt-6 mb-2">Registered Patients</h2>
-
-       <div className="Sundays">
-        <div className="sunday2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-9">
-          {/* <div className="sunday3 bg-white p-5 rounded shadow ">
-            <img src="/img/sunday2.jpeg" alt="" />
-            <h1>Appointments</h1>
-            <p>Book your appointments online with ease. Manage your schedule anytime, anywhere!.</p>
-          </div> */}
-          {/* <div className="sunday3 bg-white p-5 rounded shadow">
-            <img src="/img/sunday3.jpeg" alt="" />
-            <h1>Patient Care</h1>
-            <p>Your health is our top priority. We offer personalized care and easy access to your medical information, so you can focus on what matters </p>
-          </div> */}
-          {/* <div className="sunday3 bg-white p-5 rounded shadow">
-            <img src="/img/sunday4.jpeg" alt="" />
-            <h1>Billing</h1>
-            <p>View and manage your billing easily. Stay informed about your payment options.</p>
-          </div> */}
-        </div>
-       </div>
-
 
       <ul className="space-y-4">
         {filteredPatients.length === 0 ? (
@@ -95,6 +78,13 @@ const PatientManagement = () => {
                     className={`text-white rounded px-3 py-1 ${patient.isActive ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'}`}
                   >
                     {patient.isActive ? 'Deactivate' : 'Activate'}
+                  </button>
+                  {/* Delete Button */}
+                  <button
+                    onClick={() => handleDeletePatient(patient.id)}
+                    className="text-red-500 rounded px-3 py-1 hover:underline"
+                  >
+                    Delete
                   </button>
                 </div>
               </div>

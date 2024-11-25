@@ -127,14 +127,6 @@
         }
       ],
       "img": "/img/patient8.jpg"
-    },
-    {
-      "id": 9,
-      "name": "Chukwunonso Williams",
-      "dob": "2024-11-24",
-      "email": "chukwu2024@gmail.com",
-      "isActive": true,
-      "history": []
     }
   ],
   "Doctors": [
