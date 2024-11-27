@@ -212,6 +212,9 @@ input {
 .one{
     width: 400px;
 }
+.one img{
+    object-fit: cover;
+}
 .one p{
     font-size: 1.3rem;
 }

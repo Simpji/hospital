@@ -20,8 +20,7 @@ export const HospitalProvider = ({ children }) => {
 
     const fetchPatients = async () => {
         try {
-            // const res = await fetch("http://localhost:3000/Patients");
-            const res = await fetch("https://simplehospital.netlify.app/api/patients");
+            const res = await fetch("http://localhost:3000/Patients");
             if (!res.ok) throw new Error('Failed to fetch patients');
             const data = await res.json();
             setPatients(data);
@@ -32,8 +31,7 @@ export const HospitalProvider = ({ children }) => {
 
     const fetchDoctors = async () => {
         try {
-            // const res = await fetch("http://localhost:3000/Doctors");
-            const res = await fetch("https://simplehospital.netlify.app/api/doctors");
+            const res = await fetch("http://localhost:3000/Doctors");
             if (!res.ok) throw new Error('Failed to fetch doctors');
             const data = await res.json();
             setDoctors(data);
@@ -83,7 +81,7 @@ export const HospitalProvider = ({ children }) => {
 
      const fetchAppointments = async () => {
         try {
-            const res = await fetch("https://simplehospital.netlify.app/api/appointments");
+            const res = await fetch("http://localhost:3000/Appointments");
             if (!res.ok) throw new Error('Failed to fetch appointments');
             const data = await res.json();
             setAppointments(data);
@@ -98,7 +96,7 @@ export const HospitalProvider = ({ children }) => {
             return;
         }
         try {
-            const res = await fetch("https://simplehospital.netlify.app/api/appointments", {
+            const res = await fetch("http://localhost:3000/Appointments", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -117,7 +115,7 @@ export const HospitalProvider = ({ children }) => {
     const cancelAppointment = async (id) => {
         if (window.confirm("Are you sure you want to cancel this appointment?")) {
             try {
-                const res = await fetch(`https://simplehospital.netlify.app/api/appointments/${id}`, {
+                const res = await fetch(`http://localhost:3000/Appointments/${id}`, {
                     method: "DELETE",
                 });
                 if (!res.ok) throw new Error('Failed to cancel appointment');
@@ -135,7 +133,7 @@ export const HospitalProvider = ({ children }) => {
             return;
         }
         try {
-            const res = await fetch("https://simplehospital.netlify.app/api/patients/", {
+            const res = await fetch("http://localhost:3000/Patients", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -154,7 +152,7 @@ export const HospitalProvider = ({ children }) => {
     const deletePatient = async (id) => {
         if (window.confirm("Are you sure you want to delete this patient?")) {
             try {
-                const res = await fetch(`https://simplehospital.netlify.app/api/patients/${id}`, {
+                const res = await fetch(`http://localhost:3000/Patients/${id}`, {
                     method: "DELETE",
                 });
                 if (!res.ok) throw new Error('Failed to delete patient');
@@ -172,7 +170,7 @@ export const HospitalProvider = ({ children }) => {
         return;
     }
     try {
-        const res = await fetch("https://simplehospital.netlify.app/api/doctors/", {
+        const res = await fetch("http://localhost:3000/Doctors", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -190,7 +188,7 @@ export const HospitalProvider = ({ children }) => {
 
     const updatePatient = async (id, updatedPatient) => {
         try {
-            const res = await fetch(`https://simplehospital.netlify.app/api/patients/${id}`, {
+            const res = await fetch(`http://localhost:3000/Patients/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -209,7 +207,7 @@ export const HospitalProvider = ({ children }) => {
 
     const updateDoctor = async (id, updatedDoctor) => {
         try {
-            const res = await fetch(`https://simplehospital.netlify.app/api/doctors/${id}`, {
+            const res = await fetch(`http://localhost:3000/Doctors/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -229,7 +227,7 @@ export const HospitalProvider = ({ children }) => {
     const deleteDoctor = async (id) => {
     if (window.confirm("Are you sure you want to delete this doctor?")) {
         try {
-            const res = await fetch(`https://simplehospital.netlify.app/api/doctors/${id}`, {
+            const res = await fetch(`http://localhost:3000/Doctors/${id}`, {
                 method: "DELETE",
             });
             if (!res.ok) throw new Error('Failed to delete doctor');
