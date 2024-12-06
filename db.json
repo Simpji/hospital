@@ -17,20 +17,10 @@
       "img": "/img/patient1.jpg"
     },
     {
-      "id": "2",
       "name": "John Doe",
       "email": "johndoe@example.com",
       "dob": "1985-05-15",
-      "history": [
-        {
-          "date": "2023-01-01",
-          "description": "Routine check-up.",
-          "diagnosis": "Healthy",
-          "treatment": "No action needed.",
-          "testimonial": "Had a great experience, the staff was friendly, and everything went smoothly."
-        }
-      ],
-      "img": "/img/patient2.jpg"
+      "id": "2"
     },
     {
       "id": "3",
@@ -113,20 +103,10 @@
       "img": "/img/patient7.jpg"
     },
     {
-      "id": "8",
       "name": "Sarah Connor",
       "email": "sarah.connor@example.com",
       "dob": "1982-02-15",
-      "history": [
-        {
-          "date": "2023-08-10",
-          "description": "Routine health screening.",
-          "diagnosis": "Healthy",
-          "treatment": "No action needed.",
-          "testimonial": "It was a relief to know that everything is in order. I feel grateful for the care and attention I received during the screening."
-        }
-      ],
-      "img": "/img/patient8.jpg"
+      "id": "8"
     }
   ],
   "Doctors": [
@@ -293,40 +273,44 @@
   ],
   "Appointments": [
     {
-      "id": "1660",
+      "id": "86b3",
       "firstName": "William",
       "lastName": "Chinonso",
       "email": "willamchinonso20@gmail.com",
-      "date": "2024-10-22",
-      "time": "10:04",
-      "message": "yeiuoipokpl"
+      "date": "2024-12-02",
+      "time": "08:30",
+      "message": "new",
+      "doctorId": "6"
     },
     {
-      "id": "fe7d",
-      "firstName": "William",
+      "id": "7201",
+      "firstName": "Osifo",
+      "lastName": "Anosike",
+      "email": "willamchinonso20@gmail.com",
+      "date": "2024-12-10",
+      "time": "10:17",
+      "message": "New appointment",
+      "doctorId": "5"
+    },
+    {
+      "id": "7029",
+      "firstName": "mom",
       "lastName": "Chinonso",
       "email": "willamchinonso20@gmail.com",
-      "date": "2024-10-21",
-      "time": "10:07",
-      "message": "i want to book an appointment"
+      "date": "2024-12-09",
+      "time": "09:30",
+      "message": "Mom Simple",
+      "doctorId": "4"
     },
     {
-      "id": "94fa",
-      "firstName": "William",
+      "id": "f42e",
+      "firstName": "mom",
       "lastName": "Chinonso",
       "email": "willamchinonso20@gmail.com",
-      "date": "2024-10-22",
-      "time": "11:43",
-      "message": "am booking appointment"
-    },
-    {
-      "id": "4794",
-      "firstName": "Simple ",
-      "lastName": "williams",
-      "email": "simplewilliams965@gmail.com",
-      "date": "2024-10-24",
-      "time": "08:55",
-      "message": "Appointment Appointment"
+      "date": "2024-12-09",
+      "time": "09:30",
+      "message": "Mom Simple",
+      "doctorId": "4"
     }
   ]
 }

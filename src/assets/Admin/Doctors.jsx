@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import HospitalContext from '../context/HospitalContext';
-import DoctorItem from './DoctorItem';
+import HospitalContext from '../../context/HospitalContext';
+import DoctorItem from '../../components/DoctorItem';
 
 const Doctors = () => {
     const { doctors, deleteDoctor, currentUser } = useContext(HospitalContext);  // Assuming currentUser is part of your context

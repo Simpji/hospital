@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import HospitalContext from '../context/HospitalContext';
 
 const AddDoctor = () => {
-    const { addDoctor, error } = useContext(HospitalContext);
+    const { error } = useContext(HospitalContext);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [specialty, setSpecialty] = useState('');
@@ -10,7 +10,7 @@ const AddDoctor = () => {
     const [daysOff, setDaysOff] = useState([]);
     const [workingHours, setWorkingHours] = useState('');
     const [yearsOfExperience, setYearsOfExperience] = useState('');
-    const [image, setImage] = useState(null); 
+    const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState('');
 
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -30,25 +30,10 @@ const AddDoctor = () => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setImage(file);
-        setImagePreview(URL.createObjectURL(file)); 
+        setImagePreview(URL.createObjectURL(file));
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newDoctor = {
-            name,
-            email,
-            specialty,
-            workingDays,
-            daysOff,
-            workingHours,
-            yearsOfExperience,
-            image, 
-        };
-        addDoctor(newDoctor);
-        resetForm();
-    };
-
+    // Removed the doctor adding logic to comply with your request
     const resetForm = () => {
         setName('');
         setEmail('');
@@ -57,13 +42,13 @@ const AddDoctor = () => {
         setDaysOff([]);
         setWorkingHours('');
         setYearsOfExperience('');
-        setImage(null); 
-        setImagePreview(''); 
+        setImage(null);
+        setImagePreview('');
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-4 text-center">Add New Doctor</h2>
+        <form className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4 text-center">Doctor Form</h2>
             <input
                 type="text"
                 placeholder="Name"
@@ -90,7 +75,7 @@ const AddDoctor = () => {
             />
             <input
                 type="file"
-                accept="image/*" 
+                accept="image/*"
                 onChange={handleImageChange}
                 required
                 className="w-full mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -144,12 +129,7 @@ const AddDoctor = () => {
                     </label>
                 ))}
             </div>
-            <button
-                type="submit"
-                className="w-full bg-blue-500 text-white font-bold py-2 rounded-md hover:bg-blue-600 transition duration-300"
-            >
-                Add Doctor
-            </button>
+            {/* Removed the submit button for adding doctors */}
             {error && <div className="mt-4 text-red-500 text-center">{error}</div>}
         </form>
     );
