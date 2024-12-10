@@ -44,7 +44,7 @@ const RegisterPatient = ({ onRegister }) => {
       <Link to="/patientlogin" className="mt-4 inline-block text-blue-500 hover:underline">
         Already have an account? Login here
       </Link>
-      <Link to="/patients" className="mt-4 inline-block text-blue-500 hover:underline">
+      <Link to="/PatientHistory" className="mt-4 inline-block text-blue-500 hover:underline">
         PatientManagement System
       </Link>
     </div>

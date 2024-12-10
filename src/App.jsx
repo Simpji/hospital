@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HospitalProvider } from "./context/HospitalContext"; // No need to import HospitalContext, only HospitalProvider
 import PatientManagement from "./assets/Admin/PatientManagement";
 import ViewPatients from "./assets/Admin/ViewPatients";
+import PatientHistory from "./assets/Admin/PatientHistory"
+import AddPatient from "./assets/Admin/AddPatient";
 import AdminDashboards from "./assets/Admin/AdminDashboards";
 import Dashboard from "./assets/Admin/Dashboard"
 import RegisterPatient from "./components/RegisterPatient";
@@ -18,6 +20,7 @@ import Doctors from "./assets/Admin/Doctors";
 import DoctorDetail from "./components/DoctorDetail";
 import EditDoctor from "./components/EditDoctor";
 import AppointmentForm from "./components/AppointmentForm";
+import BookAppointment from "./assets/Admin/BookAppointment"
 import APPointmentList from "./components/APPointmentList";
 import AppointmentDetail from "./components/AppointmentDetail";
 import ViewAppointmentSchedule from "./components/ViewAppointmentSchedule";
@@ -63,7 +66,10 @@ function App() {
           {/* <Route path="/home" element={<><Banner /><Home /></>} /> */}
           <Route path="/services" element={<Services />} />
           <Route path="/Admin" element={<AdminDashboards />} />
+          <Route path="/patients" element={<PatientManagement />} />
           <Route path="/ViewPatients" element={<ViewPatients />} />
+          <Route path="/PatientHistory" element={<PatientHistory />} />
+          <Route path="/AddPatient" element={<AddPatient />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/registerPatient" element={<RegisterPatient onRegister={handleRegister} />} />
           <Route path="/patientlogin" element={<PatientLogin patients={patients} />} />
@@ -73,6 +79,7 @@ function App() {
           <Route path="/edit-doctor/:id" element={<EditDoctor />} />
           <Route path="/appointment" element={<AppointmentForm />} />
           <Route path="/appointmentlist" element={<APPointmentList />} />
+          <Route path="/BookAppointment" element={<BookAppointment />} />
           <Route path="/viewAppointment" element={<ViewAppointmentSchedule />} />
           <Route path="/appointmentDetail/:id" element={<AppointmentDetail />} />
           <Route path="/invoice" element={<InvoiceForm />} />

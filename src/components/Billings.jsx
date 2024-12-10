@@ -16,3 +16,5 @@ const Billings = ({ bills }) => {
 };
 
 export default Billings;
+
+

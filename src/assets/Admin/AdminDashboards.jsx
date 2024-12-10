@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'; // Assuming you're using React Router
 function AdminDashboards() {
   const [isPatientDropdownOpen, setIsPatientDropdownOpen] = useState(false); // State for Patient dropdown
   const [isDoctorDropdownOpen, setIsDoctorDropdownOpen] = useState(false); // State for Doctor dropdown
+  const [isAppointmentDropDownOpen, setIsAppointmentDropDownOpen] = useState(false)
 
   // Toggle dropdown visibility for Patient
   const togglePatientDropdown = () => {
@@ -16,6 +17,10 @@ function AdminDashboards() {
   const toggleDoctorDropdown = () => {
     setIsDoctorDropdownOpen(!isDoctorDropdownOpen);
   };
+
+  const toggleAppointmentDropDown = () => {
+    setIsAppointmentDropDownOpen(!isAppointmentDropDownOpen)
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -29,16 +34,36 @@ function AdminDashboards() {
         {/* Sidebar */}
         <div className="bg-white shadow-lg rounded-lg w-full md:w-64 p-6 space-y-6">
           {/* Dashboard Section with Icon */}
+          <Link to="/admin" className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg">
+            <MdDashboard className="w-5 h-5 text-blue-600" />
+            <h2 className="text-lg">Admin</h2>
+          </Link>
           <Link to="/dashboard" className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg">
             <MdDashboard className="w-5 h-5 text-blue-600" />
             <h2 className="text-lg">Dashboard</h2>
           </Link>
 
           {/* Appointment List Section with Icon */}
-          <Link to="/appointments" className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg">
+          {/* <Link to="/appointments" className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg">
             <FaCalendarAlt className="w-5 h-5 text-blue-600" />
             <h2 className="text-lg">Appointment List</h2>
-          </Link>
+          </Link> */}
+          <div className="relative">
+            <div className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg" onClick={toggleAppointmentDropDown}>
+              <FaCalendarAlt className="w-5 h-5 text-blue-600" />
+              <h2 className="text-lg">Appointment</h2>
+              </div>
+              {isAppointmentDropDownOpen && (
+              <ul className="absolute bg-white shadow-lg border rounded-md w-48 mt-2 z-10">
+                <Link to="/appointment" className="block">
+                  <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Book Appointment</li>
+                  <Link to="/appointments" className="block">
+                    <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Appointment List</li>
+                  </Link>
+                </Link>
+              </ul>
+              )}
+          </div>
 
           {/* Patient Section with Dropdown and Icon */}
           <div className="relative">
@@ -56,11 +81,11 @@ function AdminDashboards() {
                 <Link to="/viewPatients" className="block">
                   <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">View Patients</li>
                 </Link>
-                <Link to="/add-patient" className="block">
+                <Link to="/AddPatient" className="block">
                   <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Add Patient</li>
                 </Link>
-                <Link to="/patient-records" className="block">
-                  <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Patient Records</li>
+                <Link to="/patients" className="block">
+                  <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Patient History</li>
                 </Link>
               </ul>
             )}

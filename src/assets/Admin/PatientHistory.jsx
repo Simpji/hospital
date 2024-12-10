@@ -1,8 +1,6 @@
 import React, { useContext, useState } from 'react';
 import RegisterPatient from '../../components/RegisterPatient';
 import HospitalContext from '../../context/HospitalContext';
-import { MdDashboard } from 'react-icons/md';
-import { FaCalendarAlt, FaUser, FaUsers, FaMicrophone, FaUserCircle, FaCog } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const PatientManagement = () => {
@@ -11,9 +9,7 @@ const PatientManagement = () => {
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [updatedInfo, setUpdatedInfo] = useState({ name: '', email: '', dob: '' });
-  const [isPatientDropdownOpen, setIsPatientDropdownOpen] = useState(false)
-  const [isDoctorDropdownOpen, setIsDoctorDropdownOpen] = useState(false)
-  const [isAppointmentDropDownOpen, setIsAppointmentDropDownOpen] = useState(false)
+  
 
   const handleRegister = (newPatient) => {
     addPatient({ ...newPatient, id: patients.length + 1, history: [] });
@@ -42,106 +38,10 @@ const PatientManagement = () => {
     (patient.dob && patient.dob.includes(searchTerm))
   );
 
-  const toggleAppointmentDropDown = () => {
-    setIsAppointmentDropDownOpen(!isAppointmentDropDownOpen)
-  }
-  const toggleDoctorDropdown = () => {
-    setIsDoctorDropdownOpen(!isDoctorDropdownOpen)
-  }
-  const togglePatientDropdown = () => {
-    setIsPatientDropdownOpen(!isPatientDropdownOpen)
-  }
+  
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="w-full md:w-64 p-4 bg-gray">
-        <div className="space-y-4">
-          <Link to="/Admin" className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg">
-            <MdDashboard className="text-blue-600 text-xl" />
-            <span className="text-lg">Admin</span>
-          </Link>
-          <Link to="/dashboard" className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg">
-            <MdDashboard className="text-blue-600 text-xl" />
-            <span className="text-lg">Dashboard</span>
-          </Link>
-
-          <div className="relative">
-            <div className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg cursor-pointer" onClick={toggleAppointmentDropDown}>
-              <FaCalendarAlt className="w-5 h-5 text-blue-600 text-xl"/>
-              <span className="text-lg">Appointment</span>
-            </div>
-            {isAppointmentDropDownOpen && (
-              <ul className="absolute bg-white shadow-lg border rounded-md w-48 mt-2 z-10">
-                <Link to="/viewAppointments">
-                  <li className="px-4 py-2 hover:bg-gray-200">Appointment List</li>
-                </Link>
-              </ul>
-            )}
-          </div>
-
-          {/* Patient Dropdown */}
-          <div className="relative">
-            <div
-              className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg cursor-pointer"
-              onClick={togglePatientDropdown}
-            >
-              <FaUser className="text-blue-600 text-xl" />
-              <span className="text-lg">Patients</span>
-            </div>
-            {isPatientDropdownOpen && (
-              <ul className="absolute bg-white shadow-lg border rounded-md w-48 mt-2 z-10">
-                <Link to="/viewPatients">
-                  <li className="px-4 py-2 hover:bg-gray-200">View Patients</li>
-                </Link>
-                <Link to="/addPatient">
-                  <li className="px-4 py-2 hover:bg-gray-200">Add Patient</li>
-                </Link>
-                <Link to="/patient-records">
-                  <li className="px-4 py-2 hover:bg-gray-200">Patient Records</li>
-                </Link>
-              </ul>
-            )}
-          </div>
-
-          {/* Doctor Dropdown */}
-          <div className="relative">
-            <div
-              className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg cursor-pointer"
-              onClick={toggleDoctorDropdown}
-            >
-              <FaUsers className="text-blue-600 text-xl" />
-              <span className="text-lg">Doctors</span>
-            </div>
-            {isDoctorDropdownOpen && (
-              <ul className="absolute bg-white shadow-lg border rounded-md w-48 mt-2 z-10">
-                <Link to="/add-doctor">
-                  <li className="px-4 py-2 hover:bg-gray-200">Add Doctor</li>
-                </Link>
-                <Link to="/doctor-list">
-                  <li className="px-4 py-2 hover:bg-gray-200">Doctor List</li>
-                </Link>
-              </ul>
-            )}
-          </div>
-
-          {/* Other Links */}
-          <div className="space-y-2 mt-6">
-            <Link to="/mic-page" className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg">
-              <FaMicrophone className="text-blue-600 text-xl" />
-              <span className="text-lg">Mic Page</span>
-            </Link>
-            <Link to="/user" className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg">
-              <FaUserCircle className="text-blue-600 text-xl" />
-              <span className="text-lg">User</span>
-            </Link>
-            <Link to="/settings" className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg">
-              <FaCog className="text-blue-600 text-xl" />
-              <span className="text-lg">Settings</span>
-            </Link>
-          </div>
-        </div>
-      </div>
-
       <div className="p-4 sm:p-6 max-w-full sm:max-w-4xl mx-auto">
         <h1 className="text-2xl sm:text-3xl font-bold mb-4">Patient Management</h1>
 
@@ -177,19 +77,19 @@ const PatientManagement = () => {
                     >
                       Edit
                     </button>
-                    <button
+                    {/* <button
                       onClick={() => updatePatient(patient.id, { isActive: !patient.isActive })}
                       className={`text-white rounded px-3 py-1 ${patient.isActive ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'}`}
                     >
                       {patient.isActive ? 'Deactivate' : 'Activate'}
-                    </button>
+                    </button> */}
                     {/* Delete Button */}
-                    <button
+                    {/* <button
                       onClick={() => handleDeletePatient(patient.id)}
                       className="text-red-500 rounded px-3 py-1 hover:underline"
                     >
                       Delete
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
@@ -255,7 +155,7 @@ const PatientManagement = () => {
           </div>
         )}
 
-        <Link to="/admin" className="mt-6 inline-block text-blue-500 hover:underline">
+        <Link to="/" className="mt-6 inline-block text-blue-500 hover:underline">
           Back to Home
         </Link>
       </div>

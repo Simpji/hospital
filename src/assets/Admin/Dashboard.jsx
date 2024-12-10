@@ -8,9 +8,11 @@ import Chart from 'chart.js/auto'; // Chart.js import to ensure proper setup
 function AdminDashboards() {
   const [isPatientDropdownOpen, setIsPatientDropdownOpen] = useState(false);
   const [isDoctorDropdownOpen, setIsDoctorDropdownOpen] = useState(false);
+  const [isAppointmentDropDownOpen, setIsAppointmentDropDownOpen] = useState(false)
 
   const togglePatientDropdown = () => setIsPatientDropdownOpen(!isPatientDropdownOpen);
   const toggleDoctorDropdown = () => setIsDoctorDropdownOpen(!isDoctorDropdownOpen);
+  const toggleAppointmentDropDown = () => setIsAppointmentDropDownOpen(!isAppointmentDropDownOpen)
 
   // Sample data for line chart
   const chartData = {
@@ -58,15 +60,31 @@ function AdminDashboards() {
 
           {/* Sidebar Navigation */}
           <div className="space-y-4">
+            <Link to="/Admin" className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg">
+              <MdDashboard className="text-blue-600 text-xl" />
+              <span className="text-lg">Admin</span>
+            </Link>
             <Link to="/dashboard" className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg">
               <MdDashboard className="text-blue-600 text-xl" />
               <span className="text-lg">Dashboard</span>
             </Link>
 
-            <Link to="/appointments" className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg">
-              <FaCalendarAlt className="text-blue-600 text-xl" />
-              <span className="text-lg">Appointments</span>
-            </Link>
+              <div className="relative">
+              <div
+                className="flex items-center space-x-3 hover:bg-blue-50 p-3 rounded-lg cursor-pointer"
+                onClick={toggleAppointmentDropDown}
+              >
+                <FaCalendarAlt className="text-blue-600 text-xl" />
+                <span className="text-lg">Appointment</span>
+              </div>
+              {isAppointmentDropDownOpen && (
+                <ul className="absolute bg-white shadow-lg border rounded-md w-48 mt-2 z-10">
+                  <Link to="">
+                    <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Appointment List</li>
+                  </Link>
+                </ul>
+              )}
+            </div>
 
             <div className="relative">
               <div
@@ -78,10 +96,10 @@ function AdminDashboards() {
               </div>
               {isPatientDropdownOpen && (
                 <ul className="absolute bg-white shadow-lg border rounded-md w-48 mt-2 z-10">
-                  <Link to="/view-patients">
+                  <Link to="/viewPatients">
                     <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">View Patients</li>
                   </Link>
-                  <Link to="/add-patient">
+                  <Link to="/addPatient">
                     <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Add Patient</li>
                   </Link>
                   <Link to="/patient-records">
