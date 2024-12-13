@@ -1,19 +1,19 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import HospitalContext from "../../context/HospitalContext"; // Import the context
-import { FaRegUser, FaCalendarAlt, FaHistory, FaUserAlt } from 'react-icons/fa'; // Icons for the UI
-import AOS from "aos"; // Import AOS
-import "aos/dist/aos.css"; // Import AOS styles
+import HospitalContext from "../../context/HospitalContext"; 
+import { FaRegUser, FaCalendarAlt, FaHistory, FaUserAlt } from 'react-icons/fa'; 
+import AOS from "aos"; 
+import "aos/dist/aos.css"; 
 
 function ViewPatients() {
-  const { patients } = useContext(HospitalContext); // This will give us the list of patients
+  const { patients } = useContext(HospitalContext); 
 
-  // Initialize AOS
+ 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
-      easing: "ease-in-out", // Easing function
-      once: true, // Animation will happen only once
+      duration: 1000, 
+      easing: "ease-in-out", 
+      once: true, 
     });
   }, []);
 

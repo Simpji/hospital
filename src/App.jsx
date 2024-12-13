@@ -7,6 +7,7 @@ import PatientManagement from "./assets/Admin/PatientManagement";
 import ViewPatients from "./assets/Admin/ViewPatients";
 import PatientHistory from "./assets/Admin/PatientHistory"
 import AddPatient from "./assets/Admin/AddPatient";
+import AddDoctors from "./assets/Admin/AddDoctors";
 import AdminDashboards from "./assets/Admin/AdminDashboards";
 import Dashboard from "./assets/Admin/Dashboard"
 import RegisterPatient from "./components/RegisterPatient";
@@ -17,14 +18,15 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Services from "./components/Services";
 import Doctors from "./assets/Admin/Doctors";
+import Doctor from "./components/Doctor";
 import DoctorDetail from "./components/DoctorDetail";
 import EditDoctor from "./components/EditDoctor";
 import AppointmentForm from "./components/AppointmentForm";
 import BookAppointment from "./assets/Admin/BookAppointment"
+import ViewAppointmentSchedule from "./assets/Admin/ViewAppointmentSchedule";
+import ViewAppointment from "./components/ViewAppointment"
 import APPointmentList from "./components/APPointmentList";
 import AppointmentDetail from "./components/AppointmentDetail";
-import ViewAppointmentSchedule from "./components/ViewAppointmentSchedule";
-import AppointmentManagement from "./components/AppointmentManagement";
 import InvoiceForm from "./components/InvoiceForm";
 import PaymentProcessing from "./components/PaymentProcessing";
 import PaymentHistory from "./components/PaymentHistory";
@@ -70,10 +72,12 @@ function App() {
           <Route path="/ViewPatients" element={<ViewPatients />} />
           <Route path="/PatientHistory" element={<PatientHistory />} />
           <Route path="/AddPatient" element={<AddPatient />} />
+          <Route path="/AddDoctors" element={<AddDoctors />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/registerPatient" element={<RegisterPatient onRegister={handleRegister} />} />
           <Route path="/patientlogin" element={<PatientLogin patients={patients} />} />
           <Route path="/doctors" element={<Doctors />} />
+          <Route path="/Doctor" element={<Doctor />} />
           <Route path="/contactinfo" element={<ContactInfo/>} />
           <Route path="/doctor-detail/:id" element={<DoctorDetail />} />
           <Route path="/edit-doctor/:id" element={<EditDoctor />} />
@@ -81,6 +85,7 @@ function App() {
           <Route path="/appointmentlist" element={<APPointmentList />} />
           <Route path="/BookAppointment" element={<BookAppointment />} />
           <Route path="/viewAppointment" element={<ViewAppointmentSchedule />} />
+          <Route path="/view" element={< ViewAppointment />} />
           <Route path="/appointmentDetail/:id" element={<AppointmentDetail />} />
           <Route path="/invoice" element={<InvoiceForm />} />
           <Route path="/paymentprocessing" element={<PaymentProcessing />} />

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Doctors from './Doctors'
+import Doctor from './Doctor'
 import HospitalContext from '../context/HospitalContext'
 import { Link } from 'react-router-dom'
 
@@ -42,7 +42,7 @@ function Services({item}) {
         </div>
       </div>
 
-      <Link to={`/doctors`}>
+      <Link to={`/doctor`}>
             <button className='text-2xl text-black'>Check Our Doctor's</button>
           </Link>
     </section>

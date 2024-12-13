@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import HospitalContext from "../context/HospitalContext";
 import { Link } from "react-router-dom";
+import HospitalContext from "../../context/HospitalContext";
 
 function ViewAppointmentSchedule() {
     const { appointments, doctors } = useContext(HospitalContext);
 
-    // Function to get the doctor's name based on doctorId from the appointment
+    
     const getDoctorName = (doctorId) => {
         const doctor = doctors.find((doc) => doc.id === doctorId);
         return doctor ? doctor.name : "Unknown Doctor";

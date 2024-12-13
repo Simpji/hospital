@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import HospitalContext from '../context/HospitalContext';
 import DoctorItem from './DoctorItem';
 
-const Doctors = () => {
+const Doctor = () => {
     const { doctors, deleteDoctor, currentUser } = useContext(HospitalContext);  // Assuming currentUser is part of your context
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -66,4 +66,4 @@ const Doctors = () => {
     );
 };
 
-export default Doctors;
+export default Doctor;

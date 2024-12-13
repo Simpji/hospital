@@ -2,60 +2,39 @@
   "Patients": [
     {
       "id": "1",
-      "name": "Simple Williams",
-      "email": "simplewilliams965@gmail.com",
-      "dob": "1990-01-01",
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "dob": "1985-05-15",
       "history": [
         {
-          "date": "2023-01-01",
+          "date": "2023-01-10",
           "description": "Routine check-up.",
           "diagnosis": "Healthy",
-          "treatment": "No action needed.",
-          "testimonial": "Had a great experience, the staff was friendly, and everything went smoothly."
+          "treatment": "Regular exercise and healthy diet.",
+          "testimonial": "I feel great after my routine check-up. Everything seems perfect!"
         }
       ],
       "img": "/img/patient1.jpg"
     },
     {
-      "name": "John Doe",
-      "email": "johndoe@example.com",
-      "dob": "1985-05-15",
-      "id": "2"
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "dob": "1982-03-25",
+      "history": [
+        {
+          "date": "2023-05-15",
+          "description": "Routine check-up.",
+          "diagnosis": "Healthy",
+          "treatment": "Regular exercise and healthy diet.",
+          "testimonial": "I feel great and healthy after my routine check-up!"
+        }
+      ],
+      "isActive": false,
+      "img": "/img/patient2.jpg"
     },
     {
       "id": "3",
-      "name": "Alice Johnson",
-      "email": "alice.johnson@example.com",
-      "dob": "1992-04-10",
-      "history": [
-        {
-          "date": "2023-03-20",
-          "description": "Annual check-up.",
-          "diagnosis": "Healthy",
-          "treatment": "Routine health maintenance.",
-          "testimonial": "The annual check-up went smoothly. It was reassuring to know that my health is in good shape. Great service!"
-        }
-      ],
-      "img": "/img/patient3.jpg"
-    },
-    {
-      "id": "4",
-      "name": "Michael Smith",
-      "email": "michael.smith@example.com",
-      "dob": "1988-08-22",
-      "history": [
-        {
-          "date": "2023-08-22",
-          "description": "Routine check-up.",
-          "diagnosis": "Healthy",
-          "treatment": "No action needed.",
-          "testimonial": "The staff was extremely professional, and the check-up was thorough. I feel confident about my health after the consultation."
-        }
-      ],
-      "img": "/img/patient4.jpg"
-    },
-    {
-      "id": "5",
       "name": "Michael Wills",
       "email": "michael.will@example.com",
       "dob": "1988-08-22",
@@ -65,13 +44,13 @@
           "description": "Follow-up for diabetes management.",
           "diagnosis": "Type 2 Diabetes",
           "treatment": "Dietary changes and insulin therapy.",
-          "testimonial": "The treatment plan really helped me manage my diabetes better. I feel more energized, and the dietary changes made a huge difference in my blood sugar levels."
+          "testimonial": "The treatment plan really helped me manage my diabetes better."
         }
       ],
-      "img": "/img/patient5.jpg"
+      "img": "/img/patient3.jpg"
     },
     {
-      "id": "6",
+      "id": "4",
       "name": "Emily Carter",
       "email": "emily.carter@example.com",
       "dob": "1995-09-12",
@@ -81,32 +60,76 @@
           "description": "Consultation for anxiety.",
           "diagnosis": "Generalized Anxiety Disorder",
           "treatment": "Counseling and medication.",
-          "testimonial": "The counseling and medication helped me immensely. I feel more in control of my anxiety and can live my life with more peace."
+          "testimonial": "The counseling and medication helped me immensely."
         }
       ],
+      "img": "/img/patient4.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Liam Anderson",
+      "email": "liam.anderson@example.com",
+      "dob": "1992-07-18",
+      "history": [
+        {
+          "date": "2023-08-30",
+          "description": "Follow-up for depression treatment.",
+          "diagnosis": "Major Depressive Disorder",
+          "treatment": "Therapy and antidepressants.",
+          "testimonial": "I feel much better after starting the therapy and medication."
+        }
+      ],
+      "isActive": false,
+      "img": "/img/patient5.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Olivia Brown",
+      "email": "olivia.brown@example.com",
+      "dob": "1993-11-02",
+      "history": [
+        {
+          "date": "2023-09-10",
+          "description": "General health check-up.",
+          "diagnosis": "Healthy",
+          "treatment": "Routine exercise and balanced diet.",
+          "testimonial": "I am in good health and feel energized after following a healthy routine."
+        }
+      ],
+      "isActive": false,
       "img": "/img/patient6.jpg"
     },
     {
       "id": "7",
-      "name": "Henry Vikk",
-      "dob": "2024-09-30",
-      "email": "henryvikk2024@gmail.com",
+      "name": "Sophia Turner",
+      "email": "sophia.turner@example.com",
+      "dob": "1990-06-25",
       "history": [
         {
-          "date": "2024-09-30",
-          "description": "Initial consultation.",
+          "date": "2023-10-15",
+          "description": "General consultation for well-being.",
           "diagnosis": "Healthy",
-          "treatment": "Follow-up consultation recommended.",
-          "testimonial": "Although I'm still a new patient, the consultation was thorough, and I'm looking forward to following through with the recommended treatment."
+          "treatment": "Regular exercise and mental health practices.",
+          "testimonial": "I feel mentally and physically better after taking regular health check-ups."
         }
       ],
       "img": "/img/patient7.jpg"
     },
     {
-      "name": "Sarah Connor",
-      "email": "sarah.connor@example.com",
-      "dob": "1982-02-15",
-      "id": "8"
+      "id": "8",
+      "name": "Daniel Roberts",
+      "email": "daniel.roberts@example.com",
+      "dob": "1987-12-10",
+      "history": [
+        {
+          "date": "2023-11-10",
+          "description": "Consultation for high blood pressure.",
+          "diagnosis": "Hypertension",
+          "treatment": "Blood pressure medication and diet adjustments.",
+          "testimonial": "The medication and dietary changes have worked wonders. My blood pressure is now under control."
+        }
+      ],
+      "img": "/img/patient8.jpg"
     }
   ],
   "Doctors": [
@@ -266,7 +289,7 @@
       "name": "William Simple ",
       "email": "willamchinonso20@gmail.com",
       "specialty": "Orthopedics",
-      "workingHours": "7:am - 8:am",
+      "workingHours": "7:am - 10:am",
       "yearsOfExperience": "8",
       "id": "04d3"
     }

@@ -17,11 +17,12 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   
 
-  const filteredPatients = patients.filter(patient =>
-    patient.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-
+  const filteredPatients = patients
+  .filter(patient =>
+    !searchTerm || 
+    (patient.name && patient.name.trim().toLowerCase().includes(searchTerm.trim().toLowerCase()))
+  )
+  
   return (
      <div className="father">
       <div className="flex flex-col md:flex-row justify-around bg-blue-950 text-white p-5 mt-5 items-center">
@@ -153,7 +154,7 @@ function Home() {
         </Link>
       </div>
           
-      <div className="hard space-y-6 bg-blue-95">
+  <div className="hard space-y-6 bg-blue-95">
   <h1 className="text-3xl font-bold text-center text-black">Our Patients</h1>
   <div className="flex justify-center">
     <input
