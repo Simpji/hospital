@@ -126,6 +126,7 @@ function AppointmentForm() {
         time: '',
         message: '',
         doctorId: '',
+        status: "pending"
       });
       setSelectedDoctor(null);
 

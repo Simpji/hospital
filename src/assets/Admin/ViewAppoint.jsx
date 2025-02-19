@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import HospitalContext from "../../context/HospitalContext";
 
-function ViewAppointmentSchedule() {
+function ViewAppoint() {
   const { appointments, doctors, updateAppointment, cancelAppointment } = useContext(HospitalContext);
 
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
@@ -14,8 +14,9 @@ function ViewAppointmentSchedule() {
     message: "",
   });
 
-  const [selectedTab, setSelectedTab] = useState("all");
+  const [selectedTab, setSelectedTab] = useState("all"); // State to manage selected tab
 
+  // Ensure all appointments are initially pending
   useEffect(() => {
     appointments.forEach((appointment) => {
       if (!appointment.status) {
@@ -35,7 +36,7 @@ function ViewAppointmentSchedule() {
         time: appointmentToUpdate.time,
         message: appointmentToUpdate.message,
       });
-      setIsUpdateModalOpen(true);
+      setIsUpdateModalOpen(true); // Show the update modal
     }
   };
 
@@ -59,6 +60,14 @@ function ViewAppointmentSchedule() {
     }));
   };
 
+  // Confirm appointment and update the status to "Confirmed"
+  const handleConfirm = (appointmentId) => {
+    const updatedAppointment = appointments.find((appointment) => appointment.id === appointmentId);
+    if (updatedAppointment) {
+      updateAppointment(appointmentId, { ...updatedAppointment, status: 'Confirmed' });
+    }
+  };
+
   // Filter appointments based on selected tab
   const filteredAppointments = appointments.filter((appointment) => {
     if (selectedTab === "all") return true;
@@ -66,11 +75,11 @@ function ViewAppointmentSchedule() {
   });
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div  className="max-w-5xl mx-auto p-6">
       <h2 className="text-2xl font-bold text-center mb-6">Your Appointments</h2>
 
       {/* Tab Navigation */}
-      {/* <div className="flex flex-wrap justify-center space-x-4 mb-6">
+      <div className="flex flex-wrap justify-center space-x-4 mb-6">
         <button
           className={`px-4 py-2 text-sm font-semibold rounded-lg ${selectedTab === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
           onClick={() => setSelectedTab("all")}
@@ -89,7 +98,7 @@ function ViewAppointmentSchedule() {
         >
           Confirmed
         </button>
-      </div> */}
+      </div>
 
       {/* Display appointments */}
       {filteredAppointments.length === 0 ? (
@@ -121,7 +130,16 @@ function ViewAppointmentSchedule() {
                 </p>
 
                 <div className="mt-4 flex flex-col sm:flex-row sm:justify-between space-y-2 sm:space-y-0 sm:space-x-4">
-                  {/* Show Update button and Cancel button */}
+                  {/* Show Confirm button if status is Pending */}
+                  {appointment.status === "Pending" && (
+                    <button
+                      onClick={() => handleConfirm(appointment.id)}
+                      className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                      disabled={appointment.status === "Confirmed"}
+                    >
+                      Confirm Appointment
+                    </button>
+                  )}
                   <button
                     className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
                     onClick={() => handleUpdate(appointment.id)}
@@ -216,4 +234,4 @@ function ViewAppointmentSchedule() {
   );
 }
 
-export default ViewAppointmentSchedule;
+export default ViewAppoint;

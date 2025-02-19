@@ -169,6 +169,26 @@ export const HospitalProvider = ({ children }) => {
         }
     };
 
+    const updatePatient = async (id, updatedPatient) => {
+        try {
+            const res = await fetch(`http://localhost:3000/Patients/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedPatient),
+            });
+            if (!res.ok) throw new Error('Failed to update patient');
+            setPatients((prevPatients) =>
+                prevPatients.map((patient) => (patient.id === id ? { ...patient, ...updatedPatient } : patient))
+            );
+            setError(null);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+
     const addDoctor = async (doctor) => {
         if (!doctor.name || !doctor.email || !doctor.specialty || !doctor.workingHours) {
             setError('All fields are required');
@@ -191,25 +211,7 @@ export const HospitalProvider = ({ children }) => {
         }
     };
 
-    const updatePatient = async (id, updatedPatient) => {
-        try {
-            const res = await fetch(`http://localhost:3000/Patients/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(updatedPatient),
-            });
-            if (!res.ok) throw new Error('Failed to update patient');
-            setPatients((prevPatients) =>
-                prevPatients.map((patient) => (patient.id === id ? { ...patient, ...updatedPatient } : patient))
-            );
-            setError(null);
-        } catch (err) {
-            setError(err.message);
-        }
-    };
-
+    
     const updateDoctor = async (id, updatedDoctor) => {
         try {
             const res = await fetch(`http://localhost:3000/Doctors/${id}`, {
@@ -281,6 +283,7 @@ export const HospitalProvider = ({ children }) => {
             scheduleAppointment,
             cancelAppointment,
             updateAppointment,
+            fetchAppointments,
             error
         }}>
             {children}

@@ -34,20 +34,8 @@
       "img": "/img/patient2.jpg"
     },
     {
-      "id": "3",
-      "name": "Michael Wills",
-      "email": "michael.will@example.com",
-      "dob": "1988-08-22",
-      "history": [
-        {
-          "date": "2023-02-05",
-          "description": "Follow-up for diabetes management.",
-          "diagnosis": "Type 2 Diabetes",
-          "treatment": "Dietary changes and insulin therapy.",
-          "testimonial": "The treatment plan really helped me manage my diabetes better."
-        }
-      ],
-      "img": "/img/patient3.jpg"
+      "isActive": false,
+      "id": "3"
     },
     {
       "id": "4",
@@ -100,36 +88,12 @@
       "img": "/img/patient6.jpg"
     },
     {
-      "id": "7",
-      "name": "Sophia Turner",
-      "email": "sophia.turner@example.com",
-      "dob": "1990-06-25",
-      "history": [
-        {
-          "date": "2023-10-15",
-          "description": "General consultation for well-being.",
-          "diagnosis": "Healthy",
-          "treatment": "Regular exercise and mental health practices.",
-          "testimonial": "I feel mentally and physically better after taking regular health check-ups."
-        }
-      ],
-      "img": "/img/patient7.jpg"
+      "isActive": false,
+      "id": "7"
     },
     {
-      "id": "8",
-      "name": "Daniel Roberts",
-      "email": "daniel.roberts@example.com",
-      "dob": "1987-12-10",
-      "history": [
-        {
-          "date": "2023-11-10",
-          "description": "Consultation for high blood pressure.",
-          "diagnosis": "Hypertension",
-          "treatment": "Blood pressure medication and diet adjustments.",
-          "testimonial": "The medication and dietary changes have worked wonders. My blood pressure is now under control."
-        }
-      ],
-      "img": "/img/patient8.jpg"
+      "isActive": false,
+      "id": "8"
     }
   ],
   "Doctors": [
@@ -296,94 +260,33 @@
   ],
   "Appointments": [
     {
-      "id": "86b3",
-      "firstName": "William",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-02",
-      "time": "08:30",
-      "message": "new",
-      "doctorId": "6"
+      "firstName": "chukwunonso Simple",
+      "lastName": "Williams",
+      "date": "2025-02-04",
+      "time": "16:41",
+      "message": "New Appointment",
+      "id": "78bb",
+      "status": "Confirmed"
     },
     {
-      "id": "7201",
-      "firstName": "Osifo",
-      "lastName": "Anosike",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-10",
-      "time": "10:17",
+      "firstName": "Nonso",
+      "lastName": "Chinonso",
+      "date": "2025-02-13",
+      "time": "09:34",
       "message": "New appointment",
-      "doctorId": "5"
+      "id": "04f1",
+      "status": "Pending"
     },
     {
-      "id": "7029",
-      "firstName": "mom",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-09",
-      "time": "09:30",
-      "message": "Mom Simple",
-      "doctorId": "4"
-    },
-    {
-      "id": "f42e",
-      "firstName": "mom",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-09",
-      "time": "09:30",
-      "message": "Mom Simple",
-      "doctorId": "4"
-    },
-    {
-      "id": "8770",
-      "firstName": "William",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-24",
-      "time": "10:23",
-      "message": "appointment",
-      "doctorId": "5"
-    },
-    {
-      "id": "ff23",
-      "firstName": "William",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-09",
-      "time": "10:56",
-      "message": "appointment",
-      "doctorId": "3"
-    },
-    {
-      "id": "bba5",
-      "firstName": "William",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-09",
-      "time": "11:34",
-      "message": "New appointment",
-      "doctorId": "1"
-    },
-    {
-      "id": "b9fe",
-      "firstName": "William",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-09",
-      "time": "11:34",
-      "message": "New here",
-      "doctorId": "1"
-    },
-    {
-      "id": "f845",
-      "firstName": "William",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2024-12-10",
-      "time": "11:56",
-      "message": "appointment",
-      "doctorId": "1"
+      "id": "98be",
+      "firstName": "Uche",
+      "lastName": "Osifo",
+      "email": "simplewilliams965@gmail.com",
+      "date": "2025-02-17",
+      "time": "08:22",
+      "message": "Uche new appointment",
+      "doctorId": "3",
+      "status": "Pending"
     }
   ]
 }

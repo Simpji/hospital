@@ -10,6 +10,7 @@ import AddPatient from "./assets/Admin/AddPatient";
 import AddDoctors from "./assets/Admin/AddDoctors";
 import AdminDashboards from "./assets/Admin/AdminDashboards";
 import Dashboard from "./assets/Admin/Dashboard"
+import ComfirmAppointment from "./assets/Admin/ComfirmAppointment";
 import RegisterPatient from "./components/RegisterPatient";
 import PatientLogin from "./components/PatientLogin";
 import Home from "./components/pages/Home";
@@ -25,6 +26,7 @@ import AppointmentForm from "./components/AppointmentForm";
 import BookAppointment from "./assets/Admin/BookAppointment"
 import ViewAppointmentSchedule from "./assets/Admin/ViewAppointmentSchedule";
 import ViewAppointment from "./components/ViewAppointment"
+import ViewAppoint from "./assets/Admin/ViewAppoint";
 import APPointmentList from "./components/APPointmentList";
 import AppointmentDetail from "./components/AppointmentDetail";
 import InvoiceForm from "./components/InvoiceForm";
@@ -70,10 +72,12 @@ function App() {
           <Route path="/Admin" element={<AdminDashboards />} />
           <Route path="/patients" element={<PatientManagement />} />
           <Route path="/ViewPatients" element={<ViewPatients />} />
+          <Route path="/ViewAppoint" element={<ViewAppoint />} />
           <Route path="/PatientHistory" element={<PatientHistory />} />
           <Route path="/AddPatient" element={<AddPatient />} />
           <Route path="/AddDoctors" element={<AddDoctors />} />
           <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/comfirm-appointment/:appointmentId" element={<ComfirmAppointment />} />
           <Route path="/registerPatient" element={<RegisterPatient onRegister={handleRegister} />} />
           <Route path="/patientlogin" element={<PatientLogin patients={patients} />} />
           <Route path="/doctors" element={<Doctors />} />

@@ -57,7 +57,7 @@ function AdminDashboards() {
               <ul className="absolute bg-white shadow-lg border rounded-md w-48 mt-2 z-10">
                 <Link to="/appointment" className="block">
                   <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Book Appointment</li>
-                  <Link to="/appointments" className="block">
+                  <Link to="/ViewAppoint" className="block">
                     <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Appointment List</li>
                   </Link>
                 </Link>
