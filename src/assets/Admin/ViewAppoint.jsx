@@ -14,9 +14,8 @@ function ViewAppoint() {
     message: "",
   });
 
-  const [selectedTab, setSelectedTab] = useState("all"); // State to manage selected tab
+  const [selectedTab, setSelectedTab] = useState("all");
 
-  // Ensure all appointments are initially pending
   useEffect(() => {
     appointments.forEach((appointment) => {
       if (!appointment.status) {
@@ -36,7 +35,7 @@ function ViewAppoint() {
         time: appointmentToUpdate.time,
         message: appointmentToUpdate.message,
       });
-      setIsUpdateModalOpen(true); // Show the update modal
+      setIsUpdateModalOpen(true);
     }
   };
 
@@ -48,7 +47,7 @@ function ViewAppoint() {
   const handleSaveUpdate = () => {
     if (selectedAppointment) {
       updateAppointment(selectedAppointment.id, updatedData);
-      setIsUpdateModalOpen(false); // Close the modal
+      setIsUpdateModalOpen(false);
     }
   };
 
@@ -60,7 +59,6 @@ function ViewAppoint() {
     }));
   };
 
-  // Confirm appointment and update the status to "Confirmed"
   const handleConfirm = (appointmentId) => {
     const updatedAppointment = appointments.find((appointment) => appointment.id === appointmentId);
     if (updatedAppointment) {
@@ -68,15 +66,14 @@ function ViewAppoint() {
     }
   };
 
-  // Filter appointments based on selected tab
   const filteredAppointments = appointments.filter((appointment) => {
     if (selectedTab === "all") return true;
     return appointment.status.toLowerCase() === selectedTab.toLowerCase();
   });
 
   return (
-    <div  className="max-w-5xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Your Appointments</h2>
+    <div className="max-w-6xl mx-auto p-6">
+      <h2 className="text-3xl font-bold text-center mb-6">Your Appointments</h2>
 
       {/* Tab Navigation */}
       <div className="flex flex-wrap justify-center space-x-4 mb-6">
@@ -100,63 +97,69 @@ function ViewAppoint() {
         </button>
       </div>
 
-      {/* Display appointments */}
+      {/* Table for appointments */}
       {filteredAppointments.length === 0 ? (
         <p className="text-center text-lg text-gray-500">You have no {selectedTab} appointments.</p>
       ) : (
-        <ul className="space-y-6">
-          {filteredAppointments.map((appointment) => {
-            const doctor = doctors.find((doc) => doc.id === appointment.doctorId);
-            const doctorName = doctor ? doctor.name : "Unknown Doctor";
-            const doctorSpecialty = doctor ? doctor.specialty : "Specialty not available";
+        <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+          <table className="min-w-full table-auto border-collapse">
+            <thead className="bg-gray-100 text-gray-700">
+              <tr>
+                <th className="px-6 py-3 text-left text-sm font-semibold">Doctor</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold">Name</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold">Date</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold">Time</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold">Status</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-600">
+              {filteredAppointments.map((appointment) => {
+                const doctor = doctors.find((doc) => doc.id === appointment.doctorId);
+                const doctorName = doctor ? doctor.name : "Unknown Doctor";
 
-            return (
-              <li key={appointment.id} className="p-6 bg-white rounded-lg shadow-lg border border-gray-200">
-                <h3 className="text-xl font-semibold text-indigo-600 mb-2">
-                  Appointment with Dr. {doctorName}
-                </h3>
-                <p><strong className="font-medium">Doctor's Specialty:</strong> {doctorSpecialty}</p>
-                <p><strong className="font-medium">Name:</strong> {appointment.firstName} {appointment.lastName}</p>
-                <p><strong className="font-medium">Date:</strong> {appointment.date}</p>
-                <p><strong className="font-medium">Time:</strong> {appointment.time}</p>
-                <p><strong className="font-medium">Message:</strong> {appointment.message}</p>
-                <p>
-                  <strong className="font-medium">Status:</strong> {appointment.status || "Pending"}
-                  <span
-                    className={`ml-2 px-3 py-1 text-white text-sm font-semibold rounded-full ${appointment.status === 'Pending' ? 'bg-black' : appointment.status === 'Confirmed' ? 'bg-green-500' : 'bg-red-500'}`}
-                  >
-                    {appointment.status}
-                  </span>
-                </p>
-
-                <div className="mt-4 flex flex-col sm:flex-row sm:justify-between space-y-2 sm:space-y-0 sm:space-x-4">
-                  {/* Show Confirm button if status is Pending */}
-                  {appointment.status === "Pending" && (
-                    <button
-                      onClick={() => handleConfirm(appointment.id)}
-                      className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                      disabled={appointment.status === "Confirmed"}
-                    >
-                      Confirm Appointment
-                    </button>
-                  )}
-                  <button
-                    className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
-                    onClick={() => handleUpdate(appointment.id)}
-                  >
-                    Update Appointment
-                  </button>
-                  <button
-                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                    onClick={() => handleCancel(appointment.id)}
-                  >
-                    Cancel Appointment
-                  </button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                return (
+                  <tr key={appointment.id} className="border-b border-gray-200">
+                    <td className="px-6 py-4 text-sm">{doctorName}</td>
+                    <td className="px-6 py-4 text-sm">{appointment.firstName} {appointment.lastName}</td>
+                    <td className="px-6 py-4 text-sm">{appointment.date}</td>
+                    <td className="px-6 py-4 text-sm">{appointment.time}</td>
+                    <td className="px-6 py-4 text-sm">
+                      <span
+                        className={`px-3 py-1 text-white text-sm font-semibold rounded-full ${appointment.status === 'Pending' ? 'bg-black' : appointment.status === 'Confirmed' ? 'bg-green-500' : 'bg-red-500'}`}
+                      >
+                        {appointment.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm space-x-2">
+                      {appointment.status === "Pending" && (
+                        <button
+                          onClick={() => handleConfirm(appointment.id)}
+                          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                          disabled={appointment.status === "Confirmed"}
+                        >
+                          Confirm
+                        </button>
+                      )}
+                      <button
+                        className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
+                        onClick={() => handleUpdate(appointment.id)}
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                        onClick={() => handleCancel(appointment.id)}
+                      >
+                        Cancel
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {/* Update Appointment Modal */}

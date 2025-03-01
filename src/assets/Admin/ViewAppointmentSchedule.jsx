@@ -7,6 +7,7 @@ function ViewAppointmentSchedule() {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [updatedData, setUpdatedData] = useState({
+    doctorId: "", // Add this for the doctor ID
     firstName: "",
     lastName: "",
     date: "",
@@ -29,6 +30,7 @@ function ViewAppointmentSchedule() {
     if (appointmentToUpdate) {
       setSelectedAppointment(appointmentToUpdate);
       setUpdatedData({
+        doctorId: appointmentToUpdate.doctorId, // Set the doctor ID here
         firstName: appointmentToUpdate.firstName,
         lastName: appointmentToUpdate.lastName,
         date: appointmentToUpdate.date,
@@ -69,83 +71,91 @@ function ViewAppointmentSchedule() {
     <div className="max-w-5xl mx-auto p-6">
       <h2 className="text-2xl font-bold text-center mb-6">Your Appointments</h2>
 
-      {/* Tab Navigation */}
-      {/* <div className="flex flex-wrap justify-center space-x-4 mb-6">
-        <button
-          className={`px-4 py-2 text-sm font-semibold rounded-lg ${selectedTab === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-          onClick={() => setSelectedTab("all")}
-        >
-          All
-        </button>
-        <button
-          className={`px-4 py-2 text-sm font-semibold rounded-lg ${selectedTab === 'pending' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-          onClick={() => setSelectedTab("pending")}
-        >
-          Pending
-        </button>
-        <button
-          className={`px-4 py-2 text-sm font-semibold rounded-lg ${selectedTab === 'confirmed' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-          onClick={() => setSelectedTab("confirmed")}
-        >
-          Confirmed
-        </button>
-      </div> */}
-
-      {/* Display appointments */}
+      {/* Display appointments in table format */}
       {filteredAppointments.length === 0 ? (
         <p className="text-center text-lg text-gray-500">You have no {selectedTab} appointments.</p>
       ) : (
-        <ul className="space-y-6">
-          {filteredAppointments.map((appointment) => {
-            const doctor = doctors.find((doc) => doc.id === appointment.doctorId);
-            const doctorName = doctor ? doctor.name : "Unknown Doctor";
-            const doctorSpecialty = doctor ? doctor.specialty : "Specialty not available";
+        <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+          <table className="w-full table-auto">
+            <thead>
+              <tr className="bg-gray-200 text-left">
+                <th className="px-4 py-2 sm:px-6 md:px-8">Doctor</th>
+                <th className="px-4 py-2 sm:px-6 md:px-8">Patient Name</th>
+                <th className="px-4 py-2 sm:px-6 md:px-8">Date</th>
+                <th className="px-4 py-2 sm:px-6 md:px-8">Time</th>
+                <th className="px-4 py-2 sm:px-6 md:px-8">Message</th>
+                <th className="px-4 py-2 sm:px-6 md:px-8">Status</th>
+                <th className="px-4 py-2 sm:px-6 md:px-8">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredAppointments.map((appointment) => {
+                const doctor = doctors.find((doc) => doc.id === appointment.doctorId);
+                const doctorName = doctor ? doctor.name : "Unknown Doctor";
+                const doctorSpecialty = doctor ? doctor.specialty : "Specialty not available";
 
-            return (
-              <li key={appointment.id} className="p-6 bg-white rounded-lg shadow-lg border border-gray-200">
-                <h3 className="text-xl font-semibold text-indigo-600 mb-2">
-                  Appointment with Dr. {doctorName}
-                </h3>
-                <p><strong className="font-medium">Doctor's Specialty:</strong> {doctorSpecialty}</p>
-                <p><strong className="font-medium">Name:</strong> {appointment.firstName} {appointment.lastName}</p>
-                <p><strong className="font-medium">Date:</strong> {appointment.date}</p>
-                <p><strong className="font-medium">Time:</strong> {appointment.time}</p>
-                <p><strong className="font-medium">Message:</strong> {appointment.message}</p>
-                <p>
-                  <strong className="font-medium">Status:</strong> {appointment.status || "Pending"}
-                  <span
-                    className={`ml-2 px-3 py-1 text-white text-sm font-semibold rounded-full ${appointment.status === 'Pending' ? 'bg-black' : appointment.status === 'Confirmed' ? 'bg-green-500' : 'bg-red-500'}`}
-                  >
-                    {appointment.status}
-                  </span>
-                </p>
-
-                <div className="mt-4 flex flex-col sm:flex-row sm:justify-between space-y-2 sm:space-y-0 sm:space-x-4">
-                  {/* Show Update button and Cancel button */}
-                  <button
-                    className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
-                    onClick={() => handleUpdate(appointment.id)}
-                  >
-                    Update Appointment
-                  </button>
-                  <button
-                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                    onClick={() => handleCancel(appointment.id)}
-                  >
-                    Cancel Appointment
-                  </button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                return (
+                  <tr key={appointment.id} className="border-b">
+                    <td className="px-4 py-4 sm:px-6 md:px-8">{doctorName}</td>
+                    <td className="px-4 py-4 sm:px-6 md:px-8">{appointment.firstName} {appointment.lastName}</td>
+                    <td className="px-4 py-4 sm:px-6 md:px-8">{appointment.date}</td>
+                    <td className="px-4 py-4 sm:px-6 md:px-8">{appointment.time}</td>
+                    <td className="px-4 py-4 sm:px-6 md:px-8">{appointment.message}</td>
+                    <td className="px-4 py-4 sm:px-6 md:px-8">
+                      <span
+                        className={`px-3 py-1 text-white text-sm font-semibold rounded-full ${
+                          appointment.status === 'Pending'
+                            ? 'bg-black'
+                            : appointment.status === 'Confirmed'
+                            ? 'bg-green-500'
+                            : 'bg-red-500'
+                        }`}
+                      >
+                        {appointment.status || "Pending"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 sm:px-6 md:px-8 flex space-x-4"> {/* Flex container for side by side buttons */}
+                      <button
+                        className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
+                        onClick={() => handleUpdate(appointment.id)}
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                        onClick={() => handleCancel(appointment.id)}
+                      >
+                        Cancel
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {/* Update Appointment Modal */}
       {isUpdateModalOpen && selectedAppointment && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 sm:w-96">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 sm:w-96 md:w-1/3">
             <h3 className="text-2xl mb-4">Update Appointment</h3>
+            <div>
+              <label className="block mb-2">Doctor</label>
+              <select
+                name="doctorId"
+                value={updatedData.doctorId}
+                onChange={handleInputChange}
+                className="w-full p-2 border border-gray-300 rounded mb-4"
+              >
+                {doctors.map((doctor) => (
+                  <option key={doctor.id} value={doctor.id}>
+                    {doctor.name} - {doctor.specialty}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div>
               <label className="block mb-2">First Name</label>
               <input

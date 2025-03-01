@@ -35,8 +35,10 @@ import PaymentHistory from "./components/PaymentHistory";
 import PatientPortal from "./components/PatientPortal";
 import AdminDashboard from "./assets/Admin/AdminDasboard";
 import DoctorDashboard from "./components/DoctorDashboard";
+// import AddPatients from "./components/AddPatients"
 import PatientDashboard from "./components/PatientDashboard";
 import InvoiceManagement from "./components/InvoiceManagement"
+import PatientAdd from "./components/PatientAdd";
 import DiagnosisForm from "./components/DiagnosisForm";
 import HospitalManagementOverview from "./components/HospitalManagementOverview";
 import Footer from "./components/Footer";
@@ -99,6 +101,7 @@ function App() {
           <Route path="/doctorDashboard" element={<DoctorDashboard />} />
           <Route path="/patientDashboard" element={<PatientDashboard />} />
           <Route path="/invoiceManagement" element={<InvoiceManagement />} />
+          <Route path="/PatientAdd" element={<PatientAdd />} />
           {/* <Route path="/appointmentLists" element={<AppointmentLists />} /> */}
           <Route path="/hospitalManagement" element={<HospitalManagementOverview />} />
         </Routes>

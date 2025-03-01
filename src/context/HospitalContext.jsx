@@ -132,27 +132,32 @@ export const HospitalProvider = ({ children }) => {
     };
     
 
-    const addPatient = async (patient) => {
-        if (!patient.name || !patient.dob || !patient.email) {
+        const addPatient = async (patient) => {
+        if (!patient.fullName || !patient.dob || !patient.email || !patient.phone || !patient.gender || !patient.address) {
             setError('All fields are required');
             return;
         }
+
         try {
             const res = await fetch("http://localhost:3000/Patients", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(patient),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(patient),
             });
+
             if (!res.ok) throw new Error('Failed to add patient');
+
             const newPatient = await res.json();
+
             setPatients((prevPatients) => [...prevPatients, newPatient]);
             setError(null);
         } catch (err) {
             setError(err.message);
         }
-    };
+        };
+
 
     const deletePatient = async (id) => {
         if (window.confirm("Are you sure you want to delete this patient?")) {

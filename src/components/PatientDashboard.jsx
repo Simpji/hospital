@@ -27,7 +27,7 @@ const PatientDashboard = () => {
             <li className="mb-6">
               <Link to="/PatientHistory" className="flex items-center space-x-2 text-lg hover:text-blue-400">
                 <FaUser />
-                <span>Patient Information</span>
+                <span>Patient</span>
               </Link>
             </li>
             <li className="mb-6">
@@ -37,9 +37,9 @@ const PatientDashboard = () => {
               </Link>
             </li>
             <li className="mb-3">
-              <Link to="#health" className="flex items-center space-x-2 text-lg hover:text-blue-400">
+              <Link to="/PatientAdd" className="flex items-center space-x-2 text-lg hover:text-blue-400">
                 <FaHeartbeat />
-                <span>Health Overview</span>
+                <span>AddPatient</span>
               </Link>
             </li>
            
