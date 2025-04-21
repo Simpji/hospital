@@ -92,7 +92,9 @@
       "id": "7"
     },
     {
-      "isActive": false,
+      "name": "Chukwunonso",
+      "email": "chuhwuno20@gmail.com",
+      "dob": "2025-03-02",
       "id": "8"
     },
     {
@@ -275,26 +277,6 @@
       "status": "Confirmed"
     },
     {
-      "firstName": "Nonso",
-      "lastName": "Chinonso",
-      "date": "2025-02-13",
-      "time": "09:34",
-      "message": "New appointment",
-      "id": "04f1",
-      "status": "Pending"
-    },
-    {
-      "id": "98be",
-      "firstName": "Uche",
-      "lastName": "Osifo",
-      "email": "simplewilliams965@gmail.com",
-      "date": "2025-02-17",
-      "time": "08:22",
-      "message": "Uche new appointment",
-      "doctorId": "3",
-      "status": "Pending"
-    },
-    {
       "id": "915d",
       "firstName": "Kelechi",
       "lastName": "Chinonso",
@@ -303,7 +285,7 @@
       "time": "10:10",
       "message": "Kelechi Booking appiontment",
       "doctorId": "8",
-      "status": "Pending"
+      "status": "Confirmed"
     }
   ]
 }

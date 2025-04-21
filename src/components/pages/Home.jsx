@@ -25,7 +25,7 @@ function Home() {
   
   return (
      <div className="father">
-      <div className="flex flex-col md:flex-row justify-around bg-blue-950 text-white p-5 mt-5 items-center">
+      <div className="flex flex-col md:flex-row justify-evenly bg-blue-950 text-white p-3 mt-5 items-center">
       <div className="flex flex-col items-center m-3">
         <FaRegAddressCard className="text-3xl mb-3" />
         <h1 className="text-xl mb-2">Our Location</h1>

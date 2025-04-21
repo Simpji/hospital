@@ -6,17 +6,11 @@ const AppointmentDetail = () => {
   const { id } = useParams(); // Get the appointment ID from the URL
   const { appointments, doctors, updateAppointment, cancelAppointment } = useContext(HospitalContext);
   const [successMessage, setSuccessMessage] = useState("");
-  const [showForm, setShowForm] = useState(false); // State to toggle form visibility
-
+  const [showForm, setShowForm] = useState(false); 
   const navigate = useNavigate();
 
-  // Find the appointment by ID
   const appointment = appointments.find((appointment) => appointment.id === id);
-
-  // Ensure we find the doctor by doctorId from the doctors list
   const doctor = appointment ? doctors.find((doctor) => doctor.id === appointment.doctorId) : null;
-
-  // If no doctor is found, fallback to display "Doctor not found"
   const doctorName = doctor ? doctor.name : "Doctor information not available";
 
   // Local state to store updated form values
@@ -29,7 +23,6 @@ const AppointmentDetail = () => {
     status: ""
   });
 
-  // If appointment is found, set form values to the current appointment details
   useEffect(() => {
     if (appointment) {
       setUpdatedAppointment({
@@ -50,37 +43,31 @@ const AppointmentDetail = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    // Update the appointment with new details
     await updateAppointment(appointment.id, updatedAppointment);
 
-    // Set success message after the update
+   
     setSuccessMessage("Appointment has been successfully updated!");
 
-    // Optionally, navigate back after a delay (e.g., to show the success message for a while)
     setTimeout(() => {
-      navigate("/adminDashboard"); // Navigate back to admin dashboard
-    }, 2000); // 2 seconds delay for the success message to be visible
+      navigate("/adminDashboard"); 
+    }, 2000);
   };
 
   const handleConfirm = () => {
-    // Set the appointment status to "Completed"
     const updatedStatus = { ...appointment, status: "Confirmed" };
     updateAppointment(appointment.id, updatedStatus);
     setSuccessMessage("Appointment has been confirmed!");
 
-    // Optionally, navigate back after a delay (e.g., to show the success message for a while)
     setTimeout(() => {
       navigate("/adminDashboard");
     }, 2000);
   };
 
   const handleCancel = () => {
-    // Cancel the appointment
     const updatedStatus = { ...appointment, status: "Cancelled" };
     cancelAppointment(appointment.id);
     setSuccessMessage("Appointment has been cancelled!");
 
-    // Optionally, navigate back after a delay (e.g., to show the success message for a while)
     setTimeout(() => {
       navigate("/adminDashboard");
     }, 2000);
