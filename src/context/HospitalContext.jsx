@@ -10,13 +10,68 @@ export const HospitalProvider = ({ children }) => {
     const [marquee, setShowMarquee] = useState([])
     const [paymentHistory, setPaymentHistory] = useState([]);
     const [invoices, setInvoices] = useState([]);
+    const [messages, setMessages] = useState(() => {
+        const stored = localStorage.getItem('messages')
+        return stored ? JSON.parse(stored) : [];
+    })
     const [error, setError] = useState(null);
+    const [doctorId, setDoctorId] = useState(() => localStorage.getItem("doctorId") || null)
+
 
     useEffect(() => {
         fetchPatients();
         fetchDoctors();
         fetchAppointments();
+        console.log("🟡 Messages loaded from localStorage:", messages);
+         const storedDoctorId = localStorage.getItem("doctorId");
+        if(doctorId) {
+            setDoctorId(storedDoctorId);
+        }
+        // const longgeInDoctorId = '8'
+        // setDoctorId(longgeInDoctorId)
     }, []);
+
+
+    const addMessage = (appointmentId, sender, text) => {
+        const newMessage = {
+            id: Date.now().toString(),
+            appointmentId,
+            sender,
+            message: text,
+            timestamp: new Date().toISOString().split("T")[0]
+        }
+        const updatedMessages = [...messages, newMessage]
+        setMessages(updatedMessages)
+        try {
+            localStorage.setItem("messages", JSON.stringify(updatedMessages))
+        } catch (error) {
+            console.log("failled to save message:", error);
+            
+        }
+    }
+    // const addMessage = (msg) => {
+    // const updatedMessages = [...messages, msg];
+    //     setMessages(updatedMessages);
+
+    //     try {
+    //         localStorage.setItem('messages', JSON.stringify(updatedMessages));
+    //         console.log('Saved to localStorage:', updatedMessages);
+    //     } catch (error) {
+    //         console.error('Failed to save message:', error);
+    //     }
+    //  };
+
+     const deleteMessage = (id) => {
+        const updatedMessages = messages.filter((msg) => msg.id !== id);
+        setMessages(updatedMessages);
+        localStorage.setItem('messages', JSON.stringify(updatedMessages));
+        };
+        
+        const getMessageByAppointment = (appointmentId) => {
+            return messages.filter(msg => msg.appointmentId === appointmentId)
+        }
+
+
 
     const fetchPatients = async () => {
         try {
@@ -272,24 +327,31 @@ export const HospitalProvider = ({ children }) => {
 
     return (
         <HospitalContext.Provider value={{
-            patients,
-            doctors,
-            appointments,
-            paymentHistory,
-            invoices,
-            processPayment,
-            generateInvoice, // make sure it's included here
-            addPatient,
-            deletePatient,
-            addDoctor,
-            updatePatient,
-            updateDoctor,
-            deleteDoctor,
-            scheduleAppointment,
-            cancelAppointment,
-            updateAppointment,
-            fetchAppointments,
-            error
+        patients,
+        doctors,
+        appointments,
+        paymentHistory,
+        invoices,
+        messages,
+        newAppointment,
+        error,
+        doctorId,
+        setDoctorId,
+        addPatient,
+        deletePatient,
+        updatePatient,
+        addDoctor,
+        deleteDoctor,
+        updateDoctor,
+        scheduleAppointment,
+        cancelAppointment,
+        updateAppointment,
+        fetchAppointments,
+        processPayment,
+        generateInvoice,
+        getMessageByAppointment,
+        addMessage,
+        deleteMessage,
         }}>
             {children}
         </HospitalContext.Provider>
@@ -297,3 +359,26 @@ export const HospitalProvider = ({ children }) => {
 };
 
 export default HospitalContext;
+
+
+// value={{
+//             patients,
+//             doctors,
+//             appointments,
+//             paymentHistory,
+//             invoices,
+//             processPayment,
+//             generateInvoice,
+//             addPatient,
+//             deletePatient,
+//             addDoctor,
+//             addMessage,
+//             updatePatient,
+//             updateDoctor,
+//             deleteDoctor,
+//             scheduleAppointment,
+//             cancelAppointment,
+//             updateAppointment,
+//             fetchAppointments,
+//             error
+//         }}

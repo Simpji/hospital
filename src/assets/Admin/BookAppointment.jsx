@@ -12,6 +12,7 @@ function BookAppointment() {
     time: '',
     message: '',
     doctorId: '',
+    patientId: ''
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [selectedDoctor, setSelectedDoctor] = useState(null);
@@ -94,6 +95,9 @@ function BookAppointment() {
     setErrorMessage('');
     setSuccessMessage('');
 
+    const tempPatientId = Date.now().toString();
+    const formPatientId = {...formData, patientId: tempPatientId}
+
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.date || !formData.time || !formData.message || !formData.doctorId || !selectedDoctor) {
       const errorTimer = setTimeout(() => {
         setErrorMessage("Please fill out all fields before booking.");
@@ -111,7 +115,7 @@ function BookAppointment() {
     }
 
     const successTimer = setTimeout(() => {
-      scheduleAppointment(formData);
+      scheduleAppointment(formPatientId);
       setSuccessMessage("Appointment booked successfully!");
       setFormData({
         firstName: '',
@@ -121,6 +125,7 @@ function BookAppointment() {
         time: '',
         message: '',
         doctorId: '',
+        patientId: ''
       });
       setSelectedDoctor(null);
 

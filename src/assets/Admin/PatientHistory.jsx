@@ -75,21 +75,21 @@ const PatientManagement = () => {
                       onClick={() => handleOpenEditModal(patient)}
                       className="text-blue-500 rounded px-3 py-1 hover:underline"
                     >
-                      Edit
+                      Update
                     </button>
-                    {/* <button
+                    <button
                       onClick={() => updatePatient(patient.id, { isActive: !patient.isActive })}
-                      className={`text-white rounded px-3 py-1 ${patient.isActive ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'}`}
+                      className={`text-white rounded px-3 py-1 ${patient.isActive ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-500 hover:bg-blue-600'}`}
                     >
                       {patient.isActive ? 'Deactivate' : 'Activate'}
-                    </button> */}
+                    </button>
                     {/* Delete Button */}
-                    {/* <button
+                    <button
                       onClick={() => handleDeletePatient(patient.id)}
                       className="text-red-500 rounded px-3 py-1 hover:underline"
                     >
                       Delete
-                    </button> */}
+                    </button>
                   </div>
                 </div>
 

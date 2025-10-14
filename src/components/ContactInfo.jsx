@@ -7,6 +7,8 @@ const ContactInfo = () => {
   const [address, setAddress] = useState('20A Simbiat Abiola Ikeja, Lagos'); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -25,8 +27,34 @@ const ContactInfo = () => {
  
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+    setErrorMessage('')
+    setSuccessMessage('')
+    
+    if(!form.name || !form.email || !form.message){
+      setErrorMessage('please file out all form fillds!')
+      setTimeout(() => {
+        setErrorMessage('')
+      },3000)
+      return;
+
+
+    }
+
+      setSuccessMessage('Your message has been sent successfully!')
+
+    setForm({
+      name: '',
+      email: '',
+      message: '',
+    })
+
+    setTimeout(() => {
+      setErrorMessage('')
+      setSuccessMessage('')
+    }, 3000)
+
   };
+ 
 
   useEffect(() => {
     const geocodeAddress = async (address) => {
@@ -91,6 +119,14 @@ const ContactInfo = () => {
           {/* Contact Form */}
           <div className="space-y-6">
             <h3 className="text-xl font-semibold text-gray-800">Send Us a Message</h3>
+
+            {(errorMessage && 
+              <p className="text-red-600 font-medium">{errorMessage}</p>
+            )}
+
+            {(successMessage && 
+              <p className="bg-green-600 font-medium">{successMessage}</p>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -100,7 +136,6 @@ const ContactInfo = () => {
                   name="name"
                   value={form.name}
                   onChange={handleFormChange}
-                  required
                   className="mt-2 p-4 w-full border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your full name"
                 />
@@ -114,7 +149,6 @@ const ContactInfo = () => {
                   name="email"
                   value={form.email}
                   onChange={handleFormChange}
-                  required
                   className="mt-2 p-4 w-full border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your email address"
                 />
@@ -123,11 +157,11 @@ const ContactInfo = () => {
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
                 <textarea
+                type="message"
                   id="message"
                   name="message"
                   value={form.message}
                   onChange={handleFormChange}
-                  required
                   rows="4"
                   className="mt-2 p-4 w-full border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Write your message here"

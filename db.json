@@ -1,43 +1,58 @@
 {
   "Patients": [
     {
+      "isActive": false,
       "id": "1",
-      "name": "John Doe",
-      "email": "johndoe@example.com",
-      "dob": "1985-05-15",
+      "name": "Simple Williams",
+      "email": "simple.williams@example.com",
+      "dob": "1987-03-15",
       "history": [
         {
-          "date": "2023-01-10",
-          "description": "Routine check-up.",
-          "diagnosis": "Healthy",
-          "treatment": "Regular exercise and healthy diet.",
-          "testimonial": "I feel great after my routine check-up. Everything seems perfect!"
+          "date": "2024-01-10",
+          "description": "Routine dental checkup.",
+          "diagnosis": "Healthy teeth",
+          "treatment": "Regular cleaning",
+          "testimonial": "My teeth feel clean and healthy!"
         }
       ],
       "img": "/img/patient1.jpg"
     },
     {
+      "isActive": false,
       "id": "2",
-      "name": "Jane Smith",
-      "email": "janesmith@example.com",
-      "dob": "1982-03-25",
+      "name": "Michael Johnson",
+      "email": "michael.johnson@example.com",
+      "dob": "1990-07-22",
       "history": [
         {
-          "date": "2023-05-15",
-          "description": "Routine check-up.",
-          "diagnosis": "Healthy",
-          "treatment": "Regular exercise and healthy diet.",
-          "testimonial": "I feel great and healthy after my routine check-up!"
+          "date": "2023-11-05",
+          "description": "Flu symptoms consultation.",
+          "diagnosis": "Influenza",
+          "treatment": "Rest and antiviral medication",
+          "testimonial": "Recovered quickly thanks to the treatment."
         }
       ],
-      "isActive": false,
       "img": "/img/patient2.jpg"
     },
     {
       "isActive": false,
-      "id": "3"
+      "id": "3",
+      "name": "Sarah Lee",
+      "email": "sarah.lee@example.com",
+      "dob": "1984-05-30",
+      "history": [
+        {
+          "date": "2023-08-15",
+          "description": "Skin allergy check.",
+          "diagnosis": "Contact dermatitis",
+          "treatment": "Topical corticosteroids",
+          "testimonial": "Skin improved after treatment."
+        }
+      ],
+      "img": "/img/patient3.jpg"
     },
     {
+      "isActive": false,
       "id": "4",
       "name": "Emily Carter",
       "email": "emily.carter@example.com",
@@ -54,23 +69,24 @@
       "img": "/img/patient4.jpg"
     },
     {
+      "isActive": false,
       "id": "5",
-      "name": "Liam Anderson",
-      "email": "liam.anderson@example.com",
-      "dob": "1992-07-18",
+      "name": "David Kim",
+      "email": "david.kim@example.com",
+      "dob": "1978-12-11",
       "history": [
         {
-          "date": "2023-08-30",
-          "description": "Follow-up for depression treatment.",
-          "diagnosis": "Major Depressive Disorder",
-          "treatment": "Therapy and antidepressants.",
-          "testimonial": "I feel much better after starting the therapy and medication."
+          "date": "2024-03-18",
+          "description": "Back pain treatment.",
+          "diagnosis": "Muscle strain",
+          "treatment": "Physical therapy",
+          "testimonial": "Physical therapy relieved my back pain."
         }
       ],
-      "isActive": false,
       "img": "/img/patient5.jpg"
     },
     {
+      "isActive": false,
       "id": "6",
       "name": "Olivia Brown",
       "email": "olivia.brown@example.com",
@@ -84,24 +100,45 @@
           "testimonial": "I am in good health and feel energized after following a healthy routine."
         }
       ],
-      "isActive": false,
       "img": "/img/patient6.jpg"
     },
     {
       "isActive": false,
-      "id": "7"
+      "id": "7",
+      "name": "James Thompson",
+      "email": "james.thompson@example.com",
+      "dob": "1989-04-23",
+      "history": [
+        {
+          "date": "2024-02-05",
+          "description": "Seasonal allergy consultation.",
+          "diagnosis": "Hay fever",
+          "treatment": "Antihistamines",
+          "testimonial": "Allergy symptoms are much better now."
+        }
+      ],
+      "img": "/img/patient7.jpg"
     },
     {
-      "name": "Chukwunonso",
-      "email": "chuhwuno20@gmail.com",
-      "dob": "2025-03-02",
-      "id": "8"
+      "isActive": false,
+      "id": "8",
+      "name": "Laura Martinez",
+      "email": "laura.martinez@example.com",
+      "dob": "1991-08-17",
+      "history": [
+        {
+          "date": "2023-10-12",
+          "description": "Routine eye exam.",
+          "diagnosis": "Mild myopia",
+          "treatment": "Prescription glasses",
+          "testimonial": "Vision improved with glasses."
+        }
+      ],
+      "img": "/img/patient8.jpg"
     },
     {
-      "name": "Chinonso Simple",
-      "email": "willamchinonso20@gmail.com",
-      "dob": "2025-02-24",
-      "id": "9a9f"
+      "isActive": false,
+      "id": "392c"
     }
   ],
   "Doctors": [
@@ -256,36 +293,54 @@
       "workingHours": "9:00 AM - 3:00 PM",
       "image": "/img/doctor8.jpeg",
       "yearsOfExperience": "I am Dr. Laura Martinez, and I have been working in obstetrics and gynecology for 12 years at Simple Hospital. My practice focuses on women's health at all stages of life, from routine exams to pregnancy care. I am dedicated to providing compassionate and comprehensive care to my patients."
+    }
+  ],
+  "Messages": [
+    {
+      "id": "msg001",
+      "patientId": "392c",
+      "doctorId": "3",
+      "sender": "patient",
+      "recipient": "doctor",
+      "timestamp": "2025-09-19T10:30:00Z",
+      "message": "Hello doctor, I'm still feeling pain after the treatment.",
+      "billGenerated": false
     },
     {
-      "name": "William Simple ",
-      "email": "willamchinonso20@gmail.com",
-      "specialty": "Orthopedics",
-      "workingHours": "7:am - 10:am",
-      "yearsOfExperience": "8",
-      "id": "04d3"
+      "id": "msg002",
+      "patientId": "392c",
+      "doctorId": "3",
+      "sender": "doctor",
+      "recipient": "patient",
+      "timestamp": "2025-09-19T11:00:00Z",
+      "message": "Please schedule a follow-up. I’ll also generate a bill for your last consultation.",
+      "billGenerated": true
     }
   ],
   "Appointments": [
     {
-      "firstName": "chukwunonso Simple",
-      "lastName": "Williams",
-      "date": "2025-02-04",
-      "time": "16:41",
-      "message": "New Appointment",
-      "id": "78bb",
-      "status": "Confirmed"
+      "id": "3036",
+      "firstName": "Simple",
+      "lastName": "Osifo",
+      "email": "williamchinonso20@gmail.com",
+      "date": "2025-10-13",
+      "time": "11:01",
+      "message": "Booking appointment with doctor martinez",
+      "doctorId": "8",
+      "patientId": "1760166136809",
+      "status": "Pending"
     },
     {
-      "id": "915d",
-      "firstName": "Kelechi",
-      "lastName": "Chinonso",
-      "email": "willamchinonso20@gmail.com",
-      "date": "2025-02-24",
-      "time": "10:10",
-      "message": "Kelechi Booking appiontment",
-      "doctorId": "8",
-      "status": "Confirmed"
+      "id": "d3f4",
+      "firstName": "Nonso ",
+      "lastName": "Chukwunonso",
+      "email": "williamchinonso20@gmail.com",
+      "date": "2025-10-16",
+      "time": "09:01",
+      "message": "Doctor smith, I have an appointment with u sir",
+      "doctorId": "1",
+      "patientId": "1760198556240",
+      "status": "Pending"
     }
   ]
 }

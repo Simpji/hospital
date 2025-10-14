@@ -3,18 +3,21 @@ import HospitalContext from "../context/HospitalContext";
 import { MdDashboard } from 'react-icons/md';
 import { FaCalendarAlt, FaUser, FaUsers, FaMicrophone, FaUserCircle, FaCog } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+
 
 function AppointmentForm() {
-  const { scheduleAppointment, error, doctors } = useContext(HospitalContext);
+ const { scheduleAppointment, error, doctors, patients } = useContext(HospitalContext);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    date: '',
-    time: '',
-    message: '',
-    doctorId: '',
-  });
+  firstName: '',
+  lastName: '',
+  email: '',
+  date: '',
+  time: '',
+  message: '',
+  doctorId: '',
+});
+
   const [successMessage, setSuccessMessage] = useState('');
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [invalidDateMessage, setInvalidDateMessage] = useState('');
@@ -99,7 +102,11 @@ function AppointmentForm() {
     setErrorMessage('');
     setSuccessMessage('');
 
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.date || !formData.time || !formData.message || !formData.doctorId || !selectedDoctor) {
+    if (
+  !formData.firstName || !formData.lastName || !formData.email ||
+  !formData.date || !formData.time || !formData.message ||
+  !formData.doctorId || !selectedDoctor
+) {
       const errorTimer = setTimeout(() => {
         setErrorMessage("Please fill out all fields before booking.");
       }, 1000);
@@ -116,24 +123,40 @@ function AppointmentForm() {
     }
 
     const successTimer = setTimeout(() => {
-      scheduleAppointment(formData);
-      setSuccessMessage("Appointment booked successfully!");
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        date: '',
-        time: '',
-        message: '',
-        doctorId: '',
-        status: "pending"
-      });
-      setSelectedDoctor(null);
+  const newAppointment = {
+    id: uuidv4(),
+    doctorId: formData.doctorId,
+    firstName: formData.firstName,
+    lastName: formData.lastName,
+    email: formData.email,
+    date: formData.date,
+    time: formData.time,
+    message: formData.message,
+    status: 'Pending',
+    patientId: formData.patientId, // Use email as patient ID
+  };
+  console.log("Submitting appointment with patientId:", formData.patientId);
 
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 2000);
-    }, 2000);
+
+  scheduleAppointment(newAppointment); // 🔁 Use newAppointment, not formData
+
+  setSuccessMessage("Appointment booked successfully!");
+  setFormData({
+    firstName: '',
+    lastName: '',
+    email: '',
+    date: '',
+    time: '',
+    message: '',
+    doctorId: '',
+  });
+  setSelectedDoctor(null);
+
+  setTimeout(() => {
+    setSuccessMessage('');
+  }, 2000);
+}, 2000);
+
 
     return () => {
       clearTimeout(successTimer);
@@ -294,6 +317,27 @@ function AppointmentForm() {
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
+
+            {/* Patient Selection */}
+              {/* <div className="flex flex-col">
+                <label htmlFor="patientId" className="mb-2 text-sm font-medium text-gray-700">Select Patient</label>
+                <select
+                  id="patientId"
+                  name="patientId"
+                  value={formData.patientId}
+                  onChange={handleChange}
+                  required
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Select a Patient</option>
+                  {patients && patients.map((patient) => (
+                    <option key={patient.id} value={patient.id}>
+                      {patient.fullName} ({patient.email})
+                    </option>
+                  ))}
+                </select>
+              </div> */}
+
 
             {/* Doctor Selection */}
             <div className="flex flex-col">

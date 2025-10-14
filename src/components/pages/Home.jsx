@@ -15,6 +15,8 @@ import AppointmentForm from '../AppointmentForm';
 function Home() {
  const { patients } = useContext(HospitalContext); 
   const [searchTerm, setSearchTerm] = useState('');
+  // const [toggle, setToggle] = useState('true')
+  const [visiableCount, setVisiableCount] = useState(4)
   
 
   const filteredPatients = patients
@@ -93,7 +95,7 @@ function Home() {
     </div>
 
      <div className="Home flex flex-col md:flex-row justify-around bg-blue-950 text-white p-5 mt-5 items-center">
-      <div className="flex flex-col items-center m-3">
+      {/* <div className="flex flex-col items-center m-3">
         <FaRegAddressCard className="text-3xl mb-3" />
         <h1 className="text-xl mb-2">Our Location</h1>
         <p className="text-center">Doctoral Medical Center, 123 20A Medical Road, Ikeja, Lagos!...</p>
@@ -111,11 +113,10 @@ function Home() {
         <p className="mb-1">Monday - Friday: 8.00 - 18.00</p>
         <p className="mb-1">Saturday: 10.00 - 18.00</p>
         <p className="mb-1">Sunday: 10.00 - 18.00</p>
-      </div>
+      </div> */}
      </div>
 
      <div className="customFeatures">
-      {/* <div className="grid grid-cols-3 space-x-4 mb-4"> */}
       <div className="featureItem  bg-white p-5 rounded shadow" data-aos="zoom-in-up">
         <CiSaveDown1 className="col"/>
          <h1>Most Affordable</h1>
@@ -135,7 +136,7 @@ function Home() {
       {/* </div> */}
      </div>
 
-     <div>
+     <div className='oon'>
        <div className="on">
         <div className="one">
           <img src="/img/out.jpg" alt="" />
@@ -154,9 +155,9 @@ function Home() {
         </Link>
       </div>
           
-  <div className="hard space-y-6 bg-blue-95">
-  <h1 className="text-3xl font-bold text-center text-black">Our Patients</h1>
-  <div className="flex justify-center">
+    <div className="hard space-y-6 bg-blue-95">
+    <h1 className="text-3xl font-bold text-center text-black">Our Patients</h1>
+    <div className="flex justify-center">
     <input
       type="text"
       placeholder="Search by name"
@@ -167,6 +168,9 @@ function Home() {
   </div>
 
   <div className="hard2">
+     {/* <button className="toggle-btn" onClick={() => setToggle(!toggle)}>{toggle ? "Close Tab" : "See All"}</button> */}
+     <button className="toggle-btn" onClick={() => setVisiableCount(visiableCount === 4 ? filteredPatients.length : 4)}>{visiableCount === 4 ? "See All" : "Close Tab"}</button>
+     {/* {(toggle && */}
     <ul
       className="space-x- grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
       data-aos="flip-left"
@@ -176,7 +180,7 @@ function Home() {
       {filteredPatients.length === 0 ? (
         <p className="text-center text-gray-500">No patients found.</p>
       ) : (
-        filteredPatients.map((patient) => (
+        filteredPatients.slice(0, visiableCount).map((patient) => (
           <li
             key={patient.id}
             className="bg-blue-950 hard3-1 p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow ease-in-out duration-300 h-[300px] flex flex-col justify-between"
@@ -194,7 +198,7 @@ function Home() {
 
                 <h3 className="text-xl font-semibold text-white mb-2">{patient.name}</h3>
 
-                {/* Safe Access to Patient History */}
+              
                 <h3 className="text-xl font-semibold text-white mb-2">
                   {patient.history && patient.history.length > 0
                     ? patient.history[0].description
@@ -212,8 +216,9 @@ function Home() {
         ))
       )}
     </ul>
+    {/* )} */}
   </div>
-</div>
+  </div>
 
 
       <div className="simple">
@@ -256,7 +261,7 @@ function Home() {
        </div>
 
 
-       <div>
+       <div className='oon'>
        <div className="on">
         <div className="one">
           <img src="/img/out.jpg" alt="" />

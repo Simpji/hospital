@@ -1,5 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import HospitalContext from "../../context/HospitalContext";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function ViewAppoint() {
   const { appointments, doctors, updateAppointment, cancelAppointment } = useContext(HospitalContext);
@@ -16,13 +19,23 @@ function ViewAppoint() {
 
   const [selectedTab, setSelectedTab] = useState("all");
 
+  // useEffect(() => {
+  //   appointments.forEach((appointment) => {
+  //     if (!appointment.status) {
+  //       updateAppointment(appointment.id, { ...appointment, status: "Pending" });
+  //     }
+  //   });
+  // }, [appointments, updateAppointment]);
+
   useEffect(() => {
+    const validStatuses = ["Pending", "Confirmed", "Cancelled"];
     appointments.forEach((appointment) => {
-      if (!appointment.status) {
+      if (!validStatuses.includes(appointment.status)) {
         updateAppointment(appointment.id, { ...appointment, status: "Pending" });
       }
     });
   }, [appointments, updateAppointment]);
+  
 
   const handleUpdate = (appointmentId) => {
     const appointmentToUpdate = appointments.find((appointment) => appointment.id === appointmentId);
@@ -63,6 +76,7 @@ function ViewAppoint() {
     const updatedAppointment = appointments.find((appointment) => appointment.id === appointmentId);
     if (updatedAppointment) {
       updateAppointment(appointmentId, { ...updatedAppointment, status: 'Confirmed' });
+      toast.success("Appointment confirmed successfully!");
     }
   };
 
@@ -102,15 +116,15 @@ function ViewAppoint() {
         <p className="text-center text-lg text-gray-500">You have no {selectedTab} appointments.</p>
       ) : (
         <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-          <table className="min-w-full table-auto border-collapse">
-            <thead className="bg-gray-100 text-gray-700">
-              <tr>
-                <th className="px-6 py-3 text-left text-sm font-semibold">Doctor</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">Name</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">Date</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">Time</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">Status</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">Actions</th>
+          <table className="min-w-full table-auto border-separate border-spacing-y-4">
+            <thead className="bg-black text-white">
+              <tr className="text-center">
+                <th className="px-4 py-3 text-center text-sm font-semibold">Doctor</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold">Name</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold">Date</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold">Time</th>
+                <th className="px-5 py-3 text-left text-sm font-semibold">Status</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
               </tr>
             </thead>
             <tbody className="text-gray-600">
@@ -119,7 +133,7 @@ function ViewAppoint() {
                 const doctorName = doctor ? doctor.name : "Unknown Doctor";
 
                 return (
-                  <tr key={appointment.id} className="border-b border-gray-200">
+                  <tr key={appointment.id} className="text-sm whitespace-nowrap bg-white shadow-md rounded-md">
                     <td className="px-6 py-4 text-sm">{doctorName}</td>
                     <td className="px-6 py-4 text-sm">{appointment.firstName} {appointment.lastName}</td>
                     <td className="px-6 py-4 text-sm">{appointment.date}</td>
@@ -233,6 +247,8 @@ function ViewAppoint() {
           </div>
         </div>
       )}
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+
     </div>
   );
 }

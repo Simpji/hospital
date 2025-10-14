@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import HospitalContext from "../../context/HospitalContext";
+import { Link } from "react-router-dom";
 
 function ViewAppointmentSchedule() {
   const { appointments, doctors, updateAppointment, cancelAppointment } = useContext(HospitalContext);
@@ -30,7 +31,7 @@ function ViewAppointmentSchedule() {
     if (appointmentToUpdate) {
       setSelectedAppointment(appointmentToUpdate);
       setUpdatedData({
-        doctorId: appointmentToUpdate.doctorId, // Set the doctor ID here
+        doctorId: appointmentToUpdate.doctorId, 
         firstName: appointmentToUpdate.firstName,
         lastName: appointmentToUpdate.lastName,
         date: appointmentToUpdate.date,
@@ -75,17 +76,17 @@ function ViewAppointmentSchedule() {
       {filteredAppointments.length === 0 ? (
         <p className="text-center text-lg text-gray-500">You have no {selectedTab} appointments.</p>
       ) : (
-        <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-          <table className="w-full table-auto">
-            <thead>
-              <tr className="bg-gray-200 text-left">
+        <div className="overflow-x-auto  rounded-lg">
+          <table className="min-w-full table-auto border-separate border-spacing-y-4">
+            <thead className="bg-black text-white mb-5"> 
+              <tr>
                 <th className="px-4 py-2 sm:px-6 md:px-8">Doctor</th>
-                <th className="px-4 py-2 sm:px-6 md:px-8">Patient Name</th>
+                <th className="px-4 py-2 sm:px-6 md:px-8">Name</th>
                 <th className="px-4 py-2 sm:px-6 md:px-8">Date</th>
                 <th className="px-4 py-2 sm:px-6 md:px-8">Time</th>
                 <th className="px-4 py-2 sm:px-6 md:px-8">Message</th>
                 <th className="px-4 py-2 sm:px-6 md:px-8">Status</th>
-                <th className="px-4 py-2 sm:px-6 md:px-8">Actions</th>
+                <Link to="/billingHistory"> <th className="px-4 py-2 sm:px-6 md:px-8">Actions</th></Link>
               </tr>
             </thead>
             <tbody>
@@ -95,40 +96,44 @@ function ViewAppointmentSchedule() {
                 const doctorSpecialty = doctor ? doctor.specialty : "Specialty not available";
 
                 return (
-                  <tr key={appointment.id} className="border-b">
-                    <td className="px-4 py-4 sm:px-6 md:px-8">{doctorName}</td>
-                    <td className="px-4 py-4 sm:px-6 md:px-8">{appointment.firstName} {appointment.lastName}</td>
-                    <td className="px-4 py-4 sm:px-6 md:px-8">{appointment.date}</td>
-                    <td className="px-4 py-4 sm:px-6 md:px-8">{appointment.time}</td>
-                    <td className="px-4 py-4 sm:px-6 md:px-8">{appointment.message}</td>
-                    <td className="px-4 py-4 sm:px-6 md:px-8">
-                      <span
-                        className={`px-3 py-1 text-white text-sm font-semibold rounded-full ${
-                          appointment.status === 'Pending'
-                            ? 'bg-black'
-                            : appointment.status === 'Confirmed'
-                            ? 'bg-green-500'
-                            : 'bg-red-500'
-                        }`}
-                      >
-                        {appointment.status || "Pending"}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 sm:px-6 md:px-8 flex space-x-4"> {/* Flex container for side by side buttons */}
-                      <button
-                        className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
-                        onClick={() => handleUpdate(appointment.id)}
-                      >
-                        Update
-                      </button>
-                      <button
-                        className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                        onClick={() => handleCancel(appointment.id)}
-                      >
-                        Cancel
-                      </button>
-                    </td>
-                  </tr>
+                  // <td className="bg-white mt-5 shadow-lg border-b text-sm whitespace-nowrap">
+                  <tr key={appointment.id} className="text-sm whitespace-nowrap bg-white shadow-md rounded-md">
+                  <td className="py-4">{doctorName}</td>
+                  <td className="px-4 py-4">{appointment.firstName} {appointment.lastName}</td>
+                  <td className="px-4 py-4">{appointment.date}</td>
+                  <td className="px-4 py-4">{appointment.time}</td>
+                  <td className="px-4 py-4 max-w-[200px] overflow-hidden text-ellipsis">{appointment.message}</td>
+                  <td className="px-4 py-4">
+                    <span
+                      className={`px-3 py-1 text-white text-xs font-semibold rounded-full ${
+                        appointment.status === 'Pending'
+                          ? 'bg-black'
+                          : appointment.status === 'Confirmed'
+                          ? 'bg-green-500'
+                          : 'bg-red-500'
+                      }`}
+                    >
+                      {appointment.status || "Pending"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4">
+                  <div className="inline-flex gap-2">
+                    <button
+                      className="px-3 py-1 bg-yellow-500 text-white text-xs rounded hover:bg-yellow-600"
+                      onClick={() => handleUpdate(appointment.id)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600"
+                      onClick={() => handleCancel(appointment.id)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </td>
+                </tr>
+                // </td>
                 );
               })}
             </tbody>
@@ -221,7 +226,7 @@ function ViewAppointmentSchedule() {
             </div>
           </div>
         </div>
-      )}
+      )} 
     </div>
   );
 }

@@ -35,12 +35,17 @@ import PaymentHistory from "./components/PaymentHistory";
 import PatientPortal from "./components/PatientPortal";
 import AdminDashboard from "./assets/Admin/AdminDasboard";
 import DoctorDashboard from "./components/DoctorDashboard";
+// import BillingHistory from "./components/BillingHistory";
 // import AddPatients from "./components/AddPatients"
 import PatientDashboard from "./components/PatientDashboard";
 import InvoiceManagement from "./components/InvoiceManagement"
 import PatientAdd from "./components/PatientAdd";
 import DiagnosisForm from "./components/DiagnosisForm";
 import HospitalManagementOverview from "./components/HospitalManagementOverview";
+import Messaging from "./components/Messaging";
+import Billing from "./components/Billing";
+import Dash from "./components/Dash";
+import DoctorMessage from "./components/DoctorMessage";
 import Footer from "./components/Footer";
 
 function App() {
@@ -99,11 +104,16 @@ function App() {
           <Route path="/patientportal" element={<PatientPortal />} />
           <Route path="/adminDashboard" element={<AdminDashboard />} />
           <Route path="/doctorDashboard" element={<DoctorDashboard />} />
+          {/* <Route path="/billingHistory" element={<BillingHistory />} /> */}
           <Route path="/patientDashboard" element={<PatientDashboard />} />
           <Route path="/invoiceManagement" element={<InvoiceManagement />} />
           <Route path="/PatientAdd" element={<PatientAdd />} />
           {/* <Route path="/appointmentLists" element={<AppointmentLists />} /> */}
           <Route path="/hospitalManagement" element={<HospitalManagementOverview />} />
+          <Route path="/messaging" element={<Messaging/>}/>
+          <Route path="/billing" element={<Billing/>}/>
+           <Route path="/Dash" element={<Dash/>}/>
+            <Route path="/doctormessage" element={<DoctorMessage/>}/>
         </Routes>
         <Footer />
       </Router>

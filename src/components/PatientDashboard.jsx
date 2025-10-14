@@ -10,6 +10,7 @@ const PatientDashboard = () => {
   const toggleAppointmentDropDown = () => {
     setIsAppointmentDropDown(!isAppointmentDropDown)
   };
+
   
   return (
     <div className="flex h-screen bg-gray-100">
@@ -26,6 +27,10 @@ const PatientDashboard = () => {
             </li>
             <li className="mb-6">
               <Link to="/PatientHistory" className="flex items-center space-x-2 text-lg hover:text-blue-400">
+                <FaUser />
+                <span>Patient</span>
+              </Link>
+              <Link to="/viewPatients" className="flex items-center space-x-2 text-lg hover:text-blue-400">
                 <FaUser />
                 <span>Patient</span>
               </Link>
@@ -61,6 +66,8 @@ const PatientDashboard = () => {
                 )}
               </div>
             </div>
+
+            
             <li className="mb-6">
               <Link to="#medications" className="flex items-center space-x-2 text-lg hover:text-blue-400">
                 <FaMedkit />
@@ -82,6 +89,7 @@ const PatientDashboard = () => {
           </ul>
         </nav>
       </div>
+
 
       {/* Main Content Area */}
       <div className="flex-1 p-8">
