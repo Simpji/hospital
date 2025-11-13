@@ -46,6 +46,8 @@ import Messaging from "./components/Messaging";
 import Billing from "./components/Billing";
 import Dash from "./components/Dash";
 import DoctorMessage from "./components/DoctorMessage";
+import BillingDashboard from "./components/BillingDashboard";
+import PatientBilling from "./components/PatientBilling";
 import Footer from "./components/Footer";
 
 function App() {
@@ -112,8 +114,10 @@ function App() {
           <Route path="/hospitalManagement" element={<HospitalManagementOverview />} />
           <Route path="/messaging" element={<Messaging/>}/>
           <Route path="/billing" element={<Billing/>}/>
-           <Route path="/Dash" element={<Dash/>}/>
-            <Route path="/doctormessage" element={<DoctorMessage/>}/>
+          <Route path="/Dash" element={<Dash/>}/>
+          <Route path="/doctormessage" element={<DoctorMessage/>}/>
+          <Route path="/BillingDashboard" element={<BillingDashboard/>}/>
+          <Route path="/PatientBilling" element={<PatientBilling/>}/>
         </Routes>
         <Footer />
       </Router>

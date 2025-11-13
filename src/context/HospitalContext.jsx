@@ -14,8 +14,11 @@ export const HospitalProvider = ({ children }) => {
         const stored = localStorage.getItem('messages')
         return stored ? JSON.parse(stored) : [];
     })
+
+    // const [messages, setMessages] = useState([]);
+
     const [error, setError] = useState(null);
-    const [doctorId, setDoctorId] = useState(() => localStorage.getItem("doctorId") || null)
+    const [doctorId, setDoctorId] = useState(() => localStorage.getItem("doctorId") || '')
 
 
     useEffect(() => {
@@ -23,23 +26,30 @@ export const HospitalProvider = ({ children }) => {
         fetchDoctors();
         fetchAppointments();
         console.log("🟡 Messages loaded from localStorage:", messages);
-         const storedDoctorId = localStorage.getItem("doctorId");
-        if(doctorId) {
-            setDoctorId(storedDoctorId);
-        }
+        localStorage.removeItem("doctorId")
+        //  const storedDoctorId = localStorage.getItem("doctorId");
+        // if(storedDoctorId) {
+        //     setDoctorId(storedDoctorId);
+        // }
         // const longgeInDoctorId = '8'
         // setDoctorId(longgeInDoctorId)
     }, []);
 
+    
 
-    const addMessage = (appointmentId, sender, text) => {
+    const addMessage = (appointmentId, message, sender) => {
+        const appointment = appointments.find(appt => appt.id === appointmentId)
+        if(!appointment)return
         const newMessage = {
             id: Date.now().toString(),
             appointmentId,
+            doctorId: appointment.doctorId,
+            patientId: appointment.patientId,
+            message,
             sender,
-            message: text,
             timestamp: new Date().toISOString().split("T")[0]
         }
+
         const updatedMessages = [...messages, newMessage]
         setMessages(updatedMessages)
         try {
@@ -49,29 +59,76 @@ export const HospitalProvider = ({ children }) => {
             
         }
     }
-    // const addMessage = (msg) => {
-    // const updatedMessages = [...messages, msg];
-    //     setMessages(updatedMessages);
-
-    //     try {
-    //         localStorage.setItem('messages', JSON.stringify(updatedMessages));
-    //         console.log('Saved to localStorage:', updatedMessages);
-    //     } catch (error) {
-    //         console.error('Failed to save message:', error);
+    
+    // const addMessage = (appointmentId, message, sender) =>{
+    //     const appointment = appointments.find(appt => appt.id === appointmentId)
+    //     if(!appointment) return
+        
+    //     const newMessage = {
+    //         id: Date.now().toString(),
+    //         appointmentId,
+    //         doctorId: appointment.doctorId,
+    //         patientId: appointment.patientId,
+    //         message,
+    //         sender,
+    //         timestamp: new Date().toISOString(),
     //     }
-    //  };
-
+    //     const updatedMessages = [...messages, newMessage];
+    //     setMessages(updatedMessages)
+    //     try {
+    //         localStorage.setItem(messages, JSON.stringify(updatedMessages))
+    //     } catch (error) {
+    //         console.log('filed to save message');
+            
+    //     }
+    // }
+    
      const deleteMessage = (id) => {
         const updatedMessages = messages.filter((msg) => msg.id !== id);
         setMessages(updatedMessages);
         localStorage.setItem('messages', JSON.stringify(updatedMessages));
         };
+
         
-        const getMessageByAppointment = (appointmentId) => {
-            return messages.filter(msg => msg.appointmentId === appointmentId)
+    const generateInvoiceForAppointment = (appointmentId) => {
+        const appointment = appointments.find(a => a.id === appointmentId)
+
+        if(!appointment){
+            setError("appointment not found")
+            return
         }
 
+        // Check if appointment is confirmed
+        if (appointment.status !== "confirmed") {
+        alert("❌ Invoice can only be generate for confirmed appointment")
+      }
 
+        // Check if communication exists
+      const hasCommunication = messages.some((msg) => 
+        msg.appointmentId === appointmentId && msg.doctorId === appointment.doctorId && msg.patientId === appointment.patientId) 
+      if (!hasCommunication) {
+        alert("❌ No communication between doctor and patient yet, connot geterate invoice.")
+
+        return
+      }
+
+      const newInvoice = {
+        id: Date.now().toString(),
+        appointmentId: appointment.id,
+        doctorId: appointment.doctorId,
+        patientId: appointment.patientId,
+        amount: 200,
+        status: "Unpaid",
+        dateIssues: new Date().toISOString()
+      };
+
+      setInvoices((prev) => [...prev, newInvoice])
+      localStorage.setItem("invoices", JSON.stringify([...invoices, newInvoice]))
+      alert("✅ Invoice generated successfully")
+
+    }
+
+    
 
     const fetchPatients = async () => {
         try {
@@ -349,7 +406,8 @@ export const HospitalProvider = ({ children }) => {
         fetchAppointments,
         processPayment,
         generateInvoice,
-        getMessageByAppointment,
+        // getMessageByAppointment,
+        generateInvoiceForAppointment,
         addMessage,
         deleteMessage,
         }}>

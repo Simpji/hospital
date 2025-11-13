@@ -135,10 +135,6 @@
         }
       ],
       "img": "/img/patient8.jpg"
-    },
-    {
-      "isActive": false,
-      "id": "392c"
     }
   ],
   "Doctors": [
@@ -295,51 +291,41 @@
       "yearsOfExperience": "I am Dr. Laura Martinez, and I have been working in obstetrics and gynecology for 12 years at Simple Hospital. My practice focuses on women's health at all stages of life, from routine exams to pregnancy care. I am dedicated to providing compassionate and comprehensive care to my patients."
     }
   ],
-  "Messages": [
-    {
-      "id": "msg001",
-      "patientId": "392c",
-      "doctorId": "3",
-      "sender": "patient",
-      "recipient": "doctor",
-      "timestamp": "2025-09-19T10:30:00Z",
-      "message": "Hello doctor, I'm still feeling pain after the treatment.",
-      "billGenerated": false
-    },
-    {
-      "id": "msg002",
-      "patientId": "392c",
-      "doctorId": "3",
-      "sender": "doctor",
-      "recipient": "patient",
-      "timestamp": "2025-09-19T11:00:00Z",
-      "message": "Please schedule a follow-up. I’ll also generate a bill for your last consultation.",
-      "billGenerated": true
-    }
-  ],
   "Appointments": [
     {
-      "id": "3036",
+      "id": "ad2f",
       "firstName": "Simple",
       "lastName": "Osifo",
       "email": "williamchinonso20@gmail.com",
-      "date": "2025-10-13",
-      "time": "11:01",
-      "message": "Booking appointment with doctor martinez",
+      "date": "2025-10-28",
+      "time": "09:40",
+      "message": "Appointment appointment with doctor Martinez",
       "doctorId": "8",
-      "patientId": "1760166136809",
-      "status": "Pending"
+      "patientId": "1761295243695",
+      "status": "Confirmed"
     },
     {
-      "id": "d3f4",
-      "firstName": "Nonso ",
-      "lastName": "Chukwunonso",
+      "id": "eb59",
+      "firstName": "chi",
+      "lastName": "Osifo",
       "email": "williamchinonso20@gmail.com",
-      "date": "2025-10-16",
-      "time": "09:01",
-      "message": "Doctor smith, I have an appointment with u sir",
+      "date": "2025-11-03",
+      "time": "09:03",
+      "message": "New appointment ",
       "doctorId": "1",
-      "patientId": "1760198556240",
+      "patientId": "1761915819244",
+      "status": "Confirmed"
+    },
+    {
+      "id": "6ec5",
+      "firstName": "Jude",
+      "lastName": "Mark",
+      "email": "williamchinonso20@gmail.com",
+      "date": "2025-10-28",
+      "time": "10:43",
+      "message": "Mr jude booked appointment with doctor John",
+      "doctorId": "2",
+      "patientId": "1761918255258",
       "status": "Pending"
     }
   ]

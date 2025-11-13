@@ -562,4 +562,10 @@ swiper-pagination-progressbar {
         flex-direction: column; 
         align-items: flex-start; 
     }
+    .cool{
+       flex-direction: column;
+    }
+    .cooll{
+        flex-direction: column;
+    }
 }
