@@ -493,6 +493,11 @@ swiper-pagination-progressbar {
     .header{
         margin: 20px;
     }
+    /* .header img{
+        width: 50%;
+        height: 20px;
+        object-fit: cover;
+    } */
     .appointmentForm {
         width: 90%; 
         margin-top: 20px;

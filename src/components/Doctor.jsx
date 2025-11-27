@@ -13,7 +13,7 @@ const Doctor = () => {
     );
 
     return (
-        <div className="max-w-4xl mx-auto p-4">
+        <div className="max-w-2xl mx-auto p-4">
             <h1 className="text-3xl font-bold mb-6">Our Doctors</h1>
             
             {/* Search Bar */}
@@ -36,10 +36,15 @@ const Doctor = () => {
             <div className="space-y-4">
                 {filteredDoctors.length > 0 ? (
                     filteredDoctors.map(doctor => (
-                        <div key={doctor.id} className="bg-white shadow-md rounded-lg p-4 flex flex-col md:flex-row justify-between items-start">
+                        <div key={doctor.id} className="bg-white shadow-md rounded-lg p-2 flex flex-col md:flex-row justify-between items-start">
                             <Link to={`/doctor-detail/${doctor.id}`} className="flex-1">
                                 <DoctorItem doctor={doctor} />
                             </Link>
+                            {/* <img 
+                            src={doctor.image} 
+                            alt={doctor.name}
+                            className="w-full h-40 sm:h-48 object-cover rounded-md"
+                        /> */}
                             <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mt-2">
                                 {/* Only show "Edit Doctor" and "Delete Doctor" to admin */}
                                 {currentUser && currentUser.role === 'admin' && (

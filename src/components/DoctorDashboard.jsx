@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import {FaHome, FaUser, FaHeartbeat, FaCalendarAlt,FaStethoscope, FaCog} from 'react-icons/fa';
 import HospitalContext from '../context/HospitalContext';
 import { v4 as uuidv4 } from 'uuid';
+import { SlMenu } from "react-icons/sl";
+import { MdCancel } from "react-icons/md";
 import DoctorMessage from './DoctorMessage';
 
 const DoctorDashboard = () => {
@@ -20,7 +22,15 @@ const DoctorDashboard = () => {
   const [doctorMessages, setDoctorMessages] = useState([]);
   const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
   const [selectedInvoice, setSelectedInvoice] = useState(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+ const [isManagementOpen, setIsManagementOpen] = useState(false);
+ const [sidebarOpen, setSidebarOpen] = useState(false);
+
+
+  const toggleManagement = () => {
+      setIsManagementOpen(!isManagementOpen);
+  };
+
+    
 
   const [replyMap, setReplyMap] = useState({});
   const [updatedData, setUpdatedData] = useState({
@@ -44,6 +54,7 @@ console.log("Patient Messages", patientMessages);
 
 
 
+
 // Get unique patient IDs who messaged this doctor
 // const uniquePatientIds = [...new Set(doctorMessages.map(msg => msg.patientId))];
 const uniquePatientIds = [...new Set(doctorMessages
@@ -52,13 +63,14 @@ const uniquePatientIds = [...new Set(doctorMessages
 )];
 
 useEffect(() => {
-  if(!appointments || !doctorId) return;
+  if(!appointments || !selectedDoctorId) return;
 
   const savedMessages = JSON.parse(localStorage.getItem("doctorMessages")) || [];
   
   const doctorAppointments = appointments.filter(
-    appt => String(appt.doctorId) === String(doctorId)
+    appt => String(appt.doctorId) === String(selectedDoctorId)
   );
+
   const appointmentIds = doctorAppointments.map(appt => appt.id);
 
   const filteredMessages = [
@@ -66,13 +78,37 @@ useEffect(() => {
     ...savedMessages.filter(msg => appointmentIds.includes(msg.appointmentId))
   ];
 
-  // remove duplicates by message id
   const uniqueMessages = filteredMessages.filter(
     (msg, index, self) => index === self.findIndex(m => m.id === msg.id)
   );
 
   setDoctorMessages(uniqueMessages);
-}, [appointments, messages, doctorId]);
+}, [appointments, messages, selectedDoctorId]);
+
+
+
+// useEffect(() => {
+//   if(!appointments || !doctorId) return;
+
+//   const savedMessages = JSON.parse(localStorage.getItem("doctorMessages")) || [];
+  
+//   const doctorAppointments = appointments.filter(
+//     appt => String(appt.doctorId) === String(doctorId)
+//   );
+//   const appointmentIds = doctorAppointments.map(appt => appt.id);
+
+//   const filteredMessages = [
+//     ...messages.filter(msg => appointmentIds.includes(msg.appointmentId)),
+//     ...savedMessages.filter(msg => appointmentIds.includes(msg.appointmentId))
+//   ];
+
+//   // remove duplicates by message id
+//   const uniqueMessages = filteredMessages.filter(
+//     (msg, index, self) => index === self.findIndex(m => m.id === msg.id)
+//   );
+
+//   setDoctorMessages(uniqueMessages);
+// }, [appointments, messages, doctorId]);
 
 
 
@@ -297,45 +333,73 @@ const handleMakePayment = (invoice) => {
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden cool">
-      <aside className="w-67 bg-blue-800 text-white flex flex-col p-6">
+      <button 
+        onClick={() => setSidebarOpen(!sidebarOpen)} 
+        className="lg:hidden p-2 mt-5 text-white bg-red-800 lg:bg-blue-950 fixed top-4 left-5 z-[999] rounded-lg"
+      >
+        {sidebarOpen ?  "✖" : "☰"}
+      </button>
+
+        <aside
+        className={`
+          w-67 bg-blue-800 text-white flex flex-col p-6 
+          fixed lg:static top-0 left-0 h-screen z-50
+          transform transition-transform duration-300
+          ${sidebarOpen ? "translate-x-0" : "translate-x-[-100%] lg:translate-x-0"}
+        `}
+      >
         <h1 className="text-2xl font-semibold mb-8">Doctor Dashboard</h1>
+
         <nav className="flex-grow">
           <ul className="space-y-4">
+
             <li>
               <Link to="/" className="flex items-center space-x-3 hover:bg-green-950 text-white p-2 rounded transition">
                 <FaHome /><span>Home</span>
               </Link>
             </li>
+
             <li>
-              <Link to="/PatientHistory" className="flex items-center space-x-3  hover:bg-green-950 text-white p-2 rounded transition">
+              <Link to="/PatientHistory" className="flex items-center space-x-3 hover:bg-green-950 text-white p-2 rounded transition">
                 <FaUser /><span>Patients</span>
               </Link>
-              {/* <Link to="/PatientHistory" className="flex items-center space-x-3 hover:bg-blue-700 p-2 rounded transition">
-                <FaUser /><span>Patients</span>
-              </Link> */}
             </li>
+
             <li>
-              <Link to="/doctor" className="flex items-center space-x-3  hover:bg-green-950 text-white p-2 rounded transition">
+              <Link to="/patientportal" className="flex items-center space-x-3 hover:bg-green-950 text-white p-2 rounded transition">
+                <FaUser /><span>Patientportal</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/doctor" className="flex items-center space-x-3 hover:bg-green-950 text-white p-2 rounded transition">
                 <FaStethoscope /><span>Doctors</span>
               </Link>
             </li>
+
+             <li>
+              <Link to="/patientDashboard" className="flex items-center space-x-3 hover:bg-green-950 text-white p-2 rounded transition">
+                <FaStethoscope /><span>PatientDashboard</span>
+              </Link>
+            </li>
+
             <li>
               <Link to="/PatientAdd" className="flex items-center space-x-3 hover:bg-green-950 text-white p-2 rounded transition">
                 <FaHeartbeat /><span>Add Patient</span>
               </Link>
             </li>
 
+            {/* Appointments Dropdown */}
             <li className="relative">
               <div
                 onClick={toggleAppointmentDropDown}
-                className="flex items-center justify-between space-x-3 cursor-pointer  hover:bg-green-950 text-white p-2 rounded transition"
+                className="flex items-center justify-between space-x-3 cursor-pointer hover:bg-green-950 text-white p-2 rounded transition"
               >
                 <div className="flex items-center space-x-3">
                   <FaCalendarAlt /><span>Appointments</span>
                 </div>
                 <span
-                  className="transform transition-transform"
-                  style={{ transform: isAppointmentDropDown ? 'rotate(90deg)' : 'rotate(0)' }}
+                  className={`transform transition-transform ${isAppointmentDropDown ? "rotate-90" : ""}`}
                 >
                   ▶
                 </span>
@@ -344,20 +408,22 @@ const handleMakePayment = (invoice) => {
               {isAppointmentDropDown && (
                 <ul className="ml-6 mt-2 space-y-2 bg-blue-800 rounded p-2">
                   <li>
-                    <Link to="/BookAppointment" className="block  hover:bg-green-950 text-white rounded p-2 transition">
+                    <Link to="/BookAppointment" className="block hover:bg-green-950 text-white rounded p-2 transition">
                       Book
                     </Link>
                   </li>
                   <li>
-                    <Link to="/viewAppointment" className="block  hover:bg-green-950 text-white rounded p-2 transition">
+                    <Link to="/viewAppointment" className="block hover:bg-green-950 text-white rounded p-2 transition">
                       View
                     </Link>
                   </li>
                 </ul>
               )}
             </li>
+
           </ul>
         </nav>
+
         <div className="mt-auto pt-4 border-t border-blue-700">
           <Link to="/settings" className="flex items-center space-x-3 hover:bg-green-950 text-white p-2 rounded transition">
             <FaCog /><span>Settings</span>
@@ -366,10 +432,12 @@ const handleMakePayment = (invoice) => {
       </aside>
 
 
+  
+
       <main className="flex-1 p-8 bg-gray-100 overflow-y-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">
+        <div className="mb-10 mt-3">
+          <h2 className="text-3xl font-bold text-gray-800 ">
             Welcome to your dashboard 👋
           </h2>
           <p className="text-gray-500 mt-2">Here's what's happening today</p>
@@ -524,13 +592,14 @@ const handleMakePayment = (invoice) => {
         </div>
         
 
-        <ul className="space-y-4 bg-white shadow rounded-lg p-6 mb-8 cooll">
+        <ul className="space-y-4 bg-white shadow rounded-lg p-6 mb-8 coolk">
+        {/* <ul className="space-y-4 bg-white shadow rounded-lg p-6 mb-8 w-full max-w-[400px] mx-auto"> */}
         <h3 className="text-xl font-semibold text-gray-700 mb-4">All Appointments</h3>
         {sortedAppointments.map((appt) => (
-          <li key={appt.id} className="flex items-center justify-between border-b pb-3 cooll">
+          <li key={appt.id} className="flex items-center justify-between border-b p-3 cooll">
             <div>
               <p className="text-md font-medium text-gray-800">
-                Doctor: {getDoctorName(appt.doctorId)} <br />
+                {getDoctorName(appt.doctorId)} <br />
                 Patient: {appt.firstName} {appt.lastName}
               </p>
               <p className="text-sm text-gray-500">
@@ -538,7 +607,7 @@ const handleMakePayment = (invoice) => {
               </p>
             </div>
 
-            <div className="flex items-center space-x-3">
+            <div className="flex flex-col lg:flex-row items-center lg:space-x-3 space-y-3 lg:space-y-0">
               <span
                 className={`text-sm font-medium ${
                   appt.status === 'Confirmed'
@@ -556,7 +625,7 @@ const handleMakePayment = (invoice) => {
               <button
                 disabled={appt.status !== "Confirmed"}
                 onClick={() => handleGenerateInvoice(appt)}
-                className={`text-sm px-3 py-1 rounded ${
+                className={`text-sm px-3 py-1 cloo rounded ${
                   appt.status === "Confirmed"
                     ? "bg-green-600 text-white hover:bg-green-700"
                     : "bg-gray-300 text-gray-600 cursor-not-allowed"

@@ -148,14 +148,9 @@
         "Wednesday",
         "Thursday"
       ],
-      "daysOff": [
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
       "workingHours": "9:00 AM - 5:00 PM",
       "image": "/img/doctor1.jpg",
-      "yearsOfExperience": "I am Dr. Sarah Smith, and I have been working in cardiology for 10 years at Simple Hospital. My practice focuses on cardiovascular health, providing both preventative care and treatment for various heart conditions. I strive to ensure my patients receive personalized care tailored to their needs."
+       "yearsOfExperience": "I am Dr. Sarah Smith, and I have been working in dermatology for 8 years at Simple Hospital. My practice focuses on skin health, diagnosing and treating various skin conditions. I am dedicated to helping my patients achieve healthy and radiant skin through effective treatment plans."
     },
     {
       "id": "2",
@@ -317,15 +312,23 @@
       "status": "Confirmed"
     },
     {
-      "id": "6ec5",
+      "doctorId": "2",
       "firstName": "Jude",
       "lastName": "Mark",
-      "email": "williamchinonso20@gmail.com",
-      "date": "2025-10-28",
       "time": "10:43",
+      "date": "2025-10-28",
       "message": "Mr jude booked appointment with doctor John",
-      "doctorId": "2",
-      "patientId": "1761918255258",
+      "id": "6ec5",
+      "status": "Pending"
+    },
+    {
+      "doctorId": "5",
+      "firstName": "chukwunonso ",
+      "lastName": "Simple",
+      "time": "09:51",
+      "date": "2025-11-18",
+      "message": "Chi booking appointment ",
+      "id": "1d0e",
       "status": "Pending"
     }
   ]

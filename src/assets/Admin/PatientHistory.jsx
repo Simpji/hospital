@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import RegisterPatient from '../../components/RegisterPatient';
 import HospitalContext from '../../context/HospitalContext';
 import { Link } from 'react-router-dom';
+import {FaUser}from 'react-icons/fa';
 
 const PatientManagement = () => {
   const { patients, addPatient, updatePatient, deletePatient } = useContext(HospitalContext);
@@ -53,6 +54,10 @@ const PatientManagement = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border rounded-md p-2 mb-4 w-full"
         />
+         <Link to="/viewPatients" className="flex items-center space-x-2 text-lg hover:text-blue-400">
+                <FaUser />
+                <span>View Patient list</span>
+              </Link>
 
         <RegisterPatient onRegister={handleRegister} patients={filteredPatients} onDelete={deletePatient} />
 

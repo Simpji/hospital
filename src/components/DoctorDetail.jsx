@@ -4,7 +4,7 @@ import HospitalContext from "../context/HospitalContext";
 
 function DoctorDetail() {
     const { id } = useParams();
-    const { doctors } = useContext(HospitalContext);
+    const { doctors, scheduleAppointment} = useContext(HospitalContext);
     const doctor = doctors.find(doc => doc.id == id);
 
     const [name, setName] = useState("");
@@ -27,41 +27,61 @@ function DoctorDetail() {
     }, [confirmationMessage]);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        if (!name || !email || !number || !message || !date || !time) {
-            setErrorMessage("Please fill out all fields before booking.");
-            return;
-        }
+    if (!name || !email || !number || !message || !date || !time) {
+        setErrorMessage("Please fill out all fields before booking.");
+        return;
+    }
 
-        const selectedDate = new Date(`${date}T${time}`);
-        const selectedDay = selectedDate.toLocaleDateString('en-NG', { weekday: 'long' });
+    const selectedDate = new Date(`${date}T${time}`);
+    const selectedDay = selectedDate.toLocaleDateString('en-NG', { weekday: 'long' });
 
- 
-        const workingDays = doctor.workingDays ? doctor.workingDays.map(day => day.toLowerCase()) : [];
-        const formattedSelectedDay = selectedDay.toLowerCase();
+    const workingDays = doctor.workingDays ? doctor.workingDays.map(day => day.toLowerCase()) : [];
+    const formattedSelectedDay = selectedDay.toLowerCase();
 
-        if (!workingDays.includes(formattedSelectedDay)) {
-            setErrorMessage(`Doctor is not available on ${selectedDay}.`);
-            return;
-        }
+    if (!workingDays.includes(formattedSelectedDay)) {
+        setErrorMessage(`Doctor is not available on ${selectedDay}.`);
+        return;
+    }
 
-        const workingHours = doctor.workingHours.split(" - ");
-        const startTime = new Date(`${date}T${workingHours[0]}`);
-        const endTime = new Date(`${date}T${workingHours[1]}`);
+    const workingHours = doctor.workingHours.split(" - ");
+    const startTime = new Date(`${date}T${workingHours[0]}`);
+    const endTime = new Date(`${date}T${workingHours[1]}`);
 
-        if (selectedDate < startTime || selectedDate > endTime) {
-            setErrorMessage(`Doctor is not available at this time. Available hours are ${doctor.workingHours}.`);
-            return;
-        }
+    if (selectedDate < startTime || selectedDate > endTime) {
+        setErrorMessage(`Doctor is not available at this time. Available hours are ${doctor.workingHours}.`);
+        return;
+    }
 
-        setConfirmationMessage(`You have booked an appointment with ${doctor.name} on ${selectedDate.toLocaleDateString()} at ${time}.`);
-        resetForm();
-    };
+    // ⭐ NOW schedule the appointment properly
+    scheduleAppointment({
+        id: Date.now(),
+        doctorId: doctor.id,
+        patientId: email, // or whatever you use
+        firstName: name,
+        lastName: "",
+        email: email,
+        number: number,
+        date: date,
+        time: time,
+        message: message,
+        status: "Pending"
+    });
+
+    setConfirmationMessage("Appointment booked successfully!");
+    resetForm();
+};
+
+
+        // setConfirmationMessage(`You have booked an appointment with ${doctor.name} on ${selectedDate.toLocaleDateString()} at ${time}.`);
+        // resetForm();
+    // };
 
     const handleCancel = () => {
         setConfirmationMessage(`You canceled your appointment with ${doctor.name}.`);
     };
+
 
     const resetForm = () => {
         setName("");
@@ -80,7 +100,7 @@ function DoctorDetail() {
 
     return (
         <div className="doctorDetail">
-            <img src={doctor.image} alt={doctor.name} className="header" />
+            <img src={doctor.image} alt={doctor.name} className="header w-68 h-48 sm:h-64 md:h-80 object-cover rounded-b-lg" />
             <div className="doctorInfo">
                 <h1>{doctor.name}</h1>
                 <div className="infoRow">

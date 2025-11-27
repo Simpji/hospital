@@ -43,6 +43,24 @@ function AdminDashboards() {
             <h2 className="text-lg">Dashboard</h2>
           </Link>
 
+          <Link to="/doctorDashboard" className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg">
+            <MdDashboard className="w-5 h-5 text-blue-600" />
+            <h2 className="text-lg">DoctorDashboard</h2>
+          </Link>
+
+          <Link to="/patientDashboard" className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg">
+            <MdDashboard className="w-5 h-5 text-blue-600" />
+            <h2 className="text-lg">PatientDashboard</h2>
+          </Link>
+
+          <Link to="/patientportal" className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg">
+            <MdDashboard className="w-5 h-5 text-blue-600" />
+            <h2 className="text-lg">Patientportal</h2>
+          </Link>
+
+
+          
+
           {/* Appointment List Section with Icon */}
           {/* <Link to="/appointments" className="flex items-center space-x-3 cursor-pointer hover:bg-gray-200 p-3 rounded-lg">
             <FaCalendarAlt className="w-5 h-5 text-blue-600" />

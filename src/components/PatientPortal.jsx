@@ -61,8 +61,11 @@ const PatientPortal = () => {
   return (
     <div className="p-4 sm:p-6 max-w-3xl mx-auto">
       <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Welcome to Patient Portal</h1>
-      <Link to= "/doctorDashboard"><h2 className='text-red-900'>DoctorDashboard</h2></Link>
-      {/* Appointments */}
+
+      <ul className='flex justify-between text-center flex-col lg:flex-row'>
+        <Link to= "/doctorDashboard"><h2 className=' m-3 text-black'>DoctorDashboard</h2></Link>
+      <Link to= "/patientDashboard"><h2 className=' m-3 text-black'>PatientDashboard</h2></Link>
+      </ul>
       <div className="bg-white shadow rounded-lg p-4 sm:p-6 mb-6">
         <h2 className="text-xl font-semibold mb-3">Appointments</h2>
         <ul className="space-y-4">
