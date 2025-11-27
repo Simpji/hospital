@@ -143,7 +143,8 @@ export const HospitalProvider = ({ children }) => {
 
     const fetchDoctors = async () => {
         try {
-            const res = await fetch("http://localhost:3000/Doctors");
+            // const res = await fetch("http://localhost:3000/Doctors");
+             const res = await fetch("https://hospital-ten-pi.vercel.app/");
             if (!res.ok) throw new Error('Failed to fetch doctors');
             const data = await res.json();
             setDoctors(data);
@@ -154,7 +155,8 @@ export const HospitalProvider = ({ children }) => {
 
     const fetchAppointments = async () => {
         try {
-            const res = await fetch("http://localhost:3000/Appointments");
+            // const res = await fetch("http://localhost:3000/Appointments");
+            const res = await fetch("https://hospital-ten-pi.vercel.app/");
             if (!res.ok) throw new Error('Failed to fetch appointments');
             const data = await res.json();
             setAppointments(data);
