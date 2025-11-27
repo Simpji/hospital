@@ -156,7 +156,7 @@ export const HospitalProvider = ({ children }) => {
     const fetchAppointments = async () => {
         try {
             // const res = await fetch("http://localhost:3000/Appointments");
-            const res = await fetch("https://hospital-ten-pi.vercel.app/api/appointments");
+            const res = await fetch("https://hospital-git-master-simplewilliams.vercel.app/api/appointments");
             if (!res.ok) throw new Error('Failed to fetch appointments');
             const data = await res.json();
             setAppointments(data);
