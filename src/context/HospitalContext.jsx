@@ -173,8 +173,8 @@ export const HospitalProvider = ({ children }) => {
 
     const fetchAppointments = async () => {
         try {
-            const res = await fetch("https://692b17027615a15ff24eb388.mockapi.io/appointments");
-            // const res = await fetch ("http://local:300/appointments")
+            const res = await fetch("https://hospital-git-master-simplewilliams.vercel.app/");
+            // const res = await fetch ("http://local:300/appointment")
             // const res = await fetch(APPOINTMENTS_API);
             if (!res.ok) throw new Error('Failed to fetch appointments');
             const data = await res.json();
