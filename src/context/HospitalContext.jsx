@@ -128,11 +128,11 @@ export const HospitalProvider = ({ children }) => {
 
     }
 
-    // const API_URL = "https://692b17027615a15ff24eb388.mockapi.io";
+    const API_URL = "https://692b17027615a15ff24eb388.mockapi.io";
 
-    // const PATIENTS_API = `${API_URL}/patients`;
-    // const DOCTORS_API = `${API_URL}/doctors`;
-    // const APPOINTMENTS_API = `${API_URL}/appointments`;
+    const PATIENTS_API = `${API_URL}/patients`;
+    const DOCTORS_API = `${API_URL}/doctors`;
+    const APPOINTMENTS_API = `${API_URL}/appointments`;
 
         
 
@@ -174,6 +174,7 @@ export const HospitalProvider = ({ children }) => {
     const fetchAppointments = async () => {
         try {
             const res = await fetch("https://692b17027615a15ff24eb388.mockapi.io/appointments");
+            // const res = await fetch ("http://local:300/appointments")
             // const res = await fetch(APPOINTMENTS_API);
             if (!res.ok) throw new Error('Failed to fetch appointments');
             const data = await res.json();
